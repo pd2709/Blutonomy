@@ -3,7 +3,7 @@ DMMS AUT22 Thales Blutonomy Project
 
 Hello team!! 
 
-:) Start each day off right
+🙂 Start each day off right
 
 Begin every day by pulling or fetching from the master to your local master.
 
@@ -24,3 +24,18 @@ Create a new branch
     git checkout -b <new branch name>
 
   This branch will start off with a copy of the branch you were on.
+
+
+👮Clone the New Repository to your Local Machine(s)
+
+  Note: Each team member will need to perform this step.
+
+  On GitHub, navigate to the project repo:
+
+   Press the green Clone or download button.
+   Ensure that clone with HTTPS is selected. (If you setup GitHub to use SSH key and passphrase, you may select that option, but these instructions assume you are using HTTPS.)
+   Copy the URL provided.
+
+In your local terminal, from the top level folder under which you want to place your repo:
+
+    $ git clone paste-copied-url-here
