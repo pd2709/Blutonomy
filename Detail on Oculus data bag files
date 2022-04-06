@@ -1,0 +1,16 @@
+This folder contains dat captured from an Oculus 1200d in ROS .bag format.
+
+The ROS topics contained in the file are:
+/point_data - type Pointcloud2: Pointcloud data received from the oculus sonar int XYZI format.  The intensity channel is a double precision value in the range of zero to one.
+/image_data - type Image: Image data received from the oculus sonar int UInt8 format.  Columns are breaings, rows are range.  Top left corner is minimujm range, minimum bearing.
+/gain - type Int32: gain setting for the sonar in percent.
+/range - type float64: Range setting for the sonar in meters.
+/mode - type Int32: Mode selection for the sonar. 1 - low frequency (1.2 MHz), 2- high frequency (2.0 MHz).
+/scan_data - Unused, please ignore
+
+Files:
+2020-04-30-13-43-41.bag - Cable in immersion tank.  High frequency, gain 100
+2020-04-30-13-47-05.bag - Cable in immersion tank.  Low frequency, gain 100
+2020-07-06-17-26-24.bag - Cable in immersion tank.  Sensor in different location.  WAM-V ASV present in tank.
+
+-Joanthan Wheare
