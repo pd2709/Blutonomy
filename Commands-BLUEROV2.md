@@ -76,6 +76,9 @@
 //
 
         rosbag record -a
+//
+        
+        rosbag record -a --duration=30 -O tc1_1.bag
 
 # PING360 - UBUNTU    
 Same as Section 3.2.1 – using python script to save CSV
