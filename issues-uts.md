@@ -3,7 +3,7 @@
 
 This issue surrounding 'GLIBC_2.2.x not found' refers to an incompatible distro install and particular libraries being unavailable (ideally installed on 20.04 with ROS Noetic). Since there is less than 1GB free on the Ubuntu partition, as well as Matt spending a lot of time setting up the workspace for simulation (which is only compatible with ROS Melodic), and the UUV simulator repo has not been checked for cross compatibiility, the system will not be updated to 20.04 for the Oculus Viewpoint software install.
 
-Sources: 
+Sources:  
 https://forum.juce.com/t/solved-glibc-2-29-not-found-on-ubuntu-18-04/34960/6   https://www.reddit.com/r/JUCE/comments/bbrjsb/how_to_run_juce_project_on_linux/  
 https://github.com/uuvsimulator/uuv_simulator/blob/master/uuv_sensor_plugins/uuv_sensor_ros_plugins/urdf/dvl_snippets.xacro  
 https://uuvsimulator.github.io/packages/uuv_simulator/docs/api/gazebo::DVLROSPlugin/
