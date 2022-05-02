@@ -20,3 +20,23 @@ Build a Custom Robot in ROS | URDF | ROS Tutorial for Beginners: https://www.you
 How do we describe a robot? With URDF! | Getting Ready to build Robots with ROS #7 https://www.youtube.com/watch?v=CwdbsvcpOHM  
    
 What is included in the urdf: colours, material and links (think of Denavit-Hartenberg Parameters)  
+
+### sensors.xacro
+  <!-- Mount DVL -->
+  <!--fov="1.22173"-->
+  <!--width="512"-->
+  <!--height="400"-->
+  <xacro:forward_looking_sonar
+      namespace="${namespace}"
+      suffix=""
+      parent_link="${namespace}/base_link"
+      topic="fls_sonar"
+      mass="0.00001"
+      update_rate="5"
+      samples="512"
+      fov="0.8726"
+      width="512"
+      height="115" >
+      <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001" />
+      <origin xyz="0 0 -0.4" rpy="0 0.261799 0" />
+  </xacro:forward_looking_sonar>
