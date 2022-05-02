@@ -21,6 +21,9 @@ How do we describe a robot? With URDF! | Getting Ready to build Robots with ROS 
    
 What is included in the urdf: colours, material and links (think of Denavit-Hartenberg Parameters)  
 
+## Xacro  
+![image](https://user-images.githubusercontent.com/85168871/166198932-bc03f6e3-8ef1-4c24-b512-9290727cc20b.png)  
+  
 ### sensors.xacro
   <!-- Mount DVL -->
   <!--fov="1.22173"-->
