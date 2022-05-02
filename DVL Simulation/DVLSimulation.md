@@ -14,5 +14,9 @@ Our tutor Richardo reccomended us to start with looking at the 'URDF'. Matt's do
 Disclaimer: Team SPR does not have access to this repository and will not be given access due to the complexity and time delay of gaining access in the Thales system.  
   
 Here is the location of the sensors.xacro file:  
-![image](https://user-images.githubusercontent.com/85168871/166187496-9ca050ac-b40c-4bb8-ad58-ab42b51353e8.png)
-
+![image](https://user-images.githubusercontent.com/85168871/166187496-9ca050ac-b40c-4bb8-ad58-ab42b51353e8.png)  
+Sources:
+Build a Custom Robot in ROS | URDF | ROS Tutorial for Beginners: https://www.youtube.com/watch?v=JFpg7vG8NXE  
+How do we describe a robot? With URDF! | Getting Ready to build Robots with ROS #7 https://www.youtube.com/watch?v=CwdbsvcpOHM  
+   
+What is included in the urdf: colours, material and links (think of Denavit-Hartenberg Parameters)  
