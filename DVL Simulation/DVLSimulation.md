@@ -1,6 +1,8 @@
 # DVL Integration
 
 https://github-wiki-see.page/m/Field-Robotics-Lab/dave/wiki/whn_dvl_examples
+https://answers.gazebosim.org//question/13966/examples-of-registering-a-custom-sensor-not-plugin/#17653
+https://answers.gazebosim.org//question/20324/unable-to-create-sensor-of-type/
 
 # Exploring Matt's Simulation
   
