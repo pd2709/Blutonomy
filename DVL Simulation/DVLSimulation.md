@@ -4,6 +4,10 @@ https://github-wiki-see.page/m/Field-Robotics-Lab/dave/wiki/whn_dvl_examples
 https://answers.gazebosim.org//question/13966/examples-of-registering-a-custom-sensor-not-plugin/#17653
 https://answers.gazebosim.org//question/20324/unable-to-create-sensor-of-type/
 
+## A50 - WaterLink
+https://store.waterlinked.com/product/dvl-a50/  
+Transducer setup 	: 4-beam convex Janus array   
+  
 # Exploring Matt's Simulation
   
 ![image](https://user-images.githubusercontent.com/85168871/166186423-68b4d3c3-4b3b-4755-ba9e-9c35738e18ef.png)  
@@ -49,3 +53,4 @@ What is included in the urdf: colours, material and links (think of Denavit-Hart
       <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001" />
       <origin xyz="0 0 -0.4" rpy="0 0.261799 0" />
   </xacro:forward_looking_sonar>
+
