@@ -39,107 +39,110 @@ What is included in the urdf: colours, material and links (think of Denavit-Hart
   <!--fov="1.22173"-->
   <!--width="512"-->
   <!--height="400"-->
-  <xacro:forward_looking_sonar
-      namespace="${namespace}"
-      suffix=""
-      parent_link="${namespace}/base_link"
-      topic="fls_sonar"
-      mass="0.00001"
-      update_rate="5"
-      samples="512"
-      fov="0.8726"
-      width="512"
-      height="115" >
-      <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001" />
-      <origin xyz="0 0 -0.4" rpy="0 0.261799 0" />
-  </xacro:forward_looking_sonar>
+  
+	  <xacro:forward_looking_sonar
+	      namespace="${namespace}"
+	      suffix=""
+	      parent_link="${namespace}/base_link"
+	      topic="fls_sonar"
+	      mass="0.00001"
+	      update_rate="5"
+	      samples="512"
+	      fov="0.8726"
+	      width="512"
+	      height="115" >
+	      <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001" />
+	      <origin xyz="0 0 -0.4" rpy="0 0.261799 0" />
+	  </xacro:forward_looking_sonar>
 
 ### Splugins sonar_snippet.xacro
 
-  <xacro:macro name="forward_looking_sonar" params="namespace suffix parent_link topic mass update_rate samples fov width height *inertia *origin">
-    <!-- Sensor link -->
-    <link name="${namespace}/forward_sonar${suffix}_link">
-      <inertial>
-        <xacro:insert_block name="inertia" />
-        <mass value="${mass}" />
-        <origin xyz="0 0 0" rpy="0 0 0" />
-      </inertial>
-      <visual>
-        <geometry>
-          <mesh filename="file://$(find uuv_sensor_ros_plugins)/meshes/oe14-372.dae" scale="1 1 1"/>
-        </geometry>
-      </visual>
-      <xacro:no_collision/>
-    </link>
+	  <xacro:macro name="forward_looking_sonar" params="namespace suffix parent_link topic mass update_rate samples fov width height *inertia *origin">
+	    <!-- Sensor link -->
+	    <link name="${namespace}/forward_sonar${suffix}_link">
+	      <inertial>
+		<xacro:insert_block name="inertia" />
+		<mass value="${mass}" />
+		<origin xyz="0 0 0" rpy="0 0 0" />
+	      </inertial>
+	      <visual>
+		<geometry>
+		  <mesh filename="file://$(find uuv_sensor_ros_plugins)/meshes/oe14-372.dae" scale="1 1 1"/>
+		</geometry>
+	      </visual>
+	      <xacro:no_collision/>
+	    </link>
 
-    <joint name="${namespace}_forward_sonar${suffix}_joint" type="revolute">
-      <xacro:insert_block name="origin" />
-      <parent link="${parent_link}" />
-      <child link="${namespace}/forward_sonar${suffix}_link" />
-      <limit upper="0" lower="0" effort="0" velocity="0" />
-      <axis xyz="1 0 0"/>
-    </joint>
+	    <joint name="${namespace}_forward_sonar${suffix}_joint" type="revolute">
+	      <xacro:insert_block name="origin" />
+	      <parent link="${parent_link}" />
+	      <child link="${namespace}/forward_sonar${suffix}_link" />
+	      <limit upper="0" lower="0" effort="0" velocity="0" />
+	      <axis xyz="1 0 0"/>
+	    </joint>
 
 
-    <gazebo reference="${namespace}/forward_sonar${suffix}_link">
-      <sensor name="${namespace}/image_sonar" type="depth">
-        <camera>
-		  <horizontal_fov>${fov}</horizontal_fov>
-          <image>
-		    <width>${width}</width>
-		    <height>${height}</height>
-            <format>R8G8B8</format>
-          </image>
-          <clip>
-            <near>0.1</near>
-            <far>17</far>
-          </clip>
-          <save enabled="true">
-            <path>/tmp/camera</path>
-          </save>
-        </camera>
-	    <plugin filename="libimage_sonar_ros_plugin.so" name="forward_sonar${suffix}_controller">
-		  <topicName>${topic}</topicName>
-          <frameName>forward_sonar${suffix}_optical_frame</frameName>
-        </plugin>
-        <always_on>true</always_on>
-	    <update_rate>${update_rate}</update_rate>
-      </sensor>
-    </gazebo>
+	    <gazebo reference="${namespace}/forward_sonar${suffix}_link">
+	      <sensor name="${namespace}/image_sonar" type="depth">
+		<camera>
+			  <horizontal_fov>${fov}</horizontal_fov>
+		  <image>
+			    <width>${width}</width>
+			    <height>${height}</height>
+		    <format>R8G8B8</format>
+		  </image>
+		  <clip>
+		    <near>0.1</near>
+		    <far>17</far>
+		  </clip>
+		  <save enabled="true">
+		    <path>/tmp/camera</path>
+		  </save>
+		</camera>
+		    <plugin filename="libimage_sonar_ros_plugin.so" name="forward_sonar${suffix}_controller">
+			  <topicName>${topic}</topicName>
+		  <frameName>forward_sonar${suffix}_optical_frame</frameName>
+		</plugin>
+		<always_on>true</always_on>
+		    <update_rate>${update_rate}</update_rate>
+	      </sensor>
+	    </gazebo>
 
-	<joint name="${namespace}/forward_sonar${suffix}_joint" type="fixed">
-      <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
-      <parent link="${namespace}/forward_sonar${suffix}_link"/>
-      <child link="${namespace}/forward_sonar${suffix}_optical_frame"/>
-    </joint>
+		<joint name="${namespace}/forward_sonar${suffix}_joint" type="fixed">
+	      <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+	      <parent link="${namespace}/forward_sonar${suffix}_link"/>
+	      <child link="${namespace}/forward_sonar${suffix}_optical_frame"/>
+	    </joint>
 
-	<link name="${namespace}/forward_sonar${suffix}_optical_frame"/>
-  </xacro:macro>
+		<link name="${namespace}/forward_sonar${suffix}_optical_frame"/>
+	  </xacro:macro>
   
 ### Current Error
-[ERROR]: Mesh scale was specified, but could not be parsed: Parser found 0 elements but 3 expected while parsing vector [  ]
-[ERROR]: Could not parse visual element for Link [bluerov2/dvl_link]
-[ERROR]: Failed to build tree: parent link [bluerov2/baselink] of joint [bluerov2/dvl_joint] not found.  This is not valid according to the URDF spec. Every link you refer to from a joint needs to be explicitly defined in the robot description. To fix this problem you can either remove this joint [bluerov2/dvl_joint] from your urdf file, or add "<link name="bluerov2/baselink" />" to your urdf file.
+	[ERROR]: Mesh scale was specified, but could not be parsed: Parser found 0 elements but 3 expected while parsing vector [  ]
+	[ERROR]: Could not parse visual element for Link [bluerov2/dvl_link]
+	[ERROR]: Failed to build tree: parent link [bluerov2/baselink] of joint [bluerov2/dvl_joint] not found.  This is not valid according to the URDF spec. Every link you refer to from a joint needs to be explicitly defined in the robot description. To fix this problem you can either remove this joint [bluerov2/dvl_joint] from your urdf file, or add "<link name="bluerov2/baselink" />" to your urdf file.
 
 ### DVL Xacro Macros
 
 NOT WORKING!!! (GOOD IF WE WANT TO SCALE THE DVL -> BUT WHAT IS SCALED? THE MESH?)
-  <xacro:dvl_plugin_macro 
-      namespace="${namespace}"
-      parent_link="${namespace}/base_link" 
-      topic="dvl_sonar"
-      scale=""
-      update_rate="5"
-      reference_frame=""
-      noise_sigma=""
-      noise_amplitude="" >
-      <origin xyz="0 0 0" rpy="0 0 0" />
-  </xacro:dvl_plugin_macro>
+
+	  <xacro:dvl_plugin_macro 
+	      namespace="${namespace}"
+	      parent_link="${namespace}/base_link" 
+	      topic="dvl_sonar"
+	      scale=""
+	      update_rate="5"
+	      reference_frame=""
+	      noise_sigma=""
+	      noise_amplitude="" >
+	      <origin xyz="0 0 0" rpy="0 0 0" />
+	  </xacro:dvl_plugin_macro>
   
   WORKING!!! (ALSO DEPRECATED)
-  <xacro:default_dvl namespace="${namespace}" parent_link="${namespace}/base_link">
-      <origin xyz="0 0 0" rpy="0 0 0" />
-  </xacro:default_dvl >
+  
+	  <xacro:default_dvl namespace="${namespace}" parent_link="${namespace}/base_link">
+	      <origin xyz="0 0 0" rpy="0 0 0" />
+	  </xacro:default_dvl >
     
 # Further Notes
 
@@ -156,112 +159,149 @@ documentation on a submarine simulator with gazebo (example has good instruction
 https://github.com/paagutie/submarine/blob/master/Marum_simulator.pdf
 
 Add the following lines to 'sensors.xacro' to add dvl sensor:
- <xacro:default_dvl namespace="${namespace}" parent_link="${namespace}/base_link">
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-  </xacro:default_dvl>
+
+	 <xacro:default_dvl namespace="${namespace}" parent_link="${namespace}/base_link">
+	    <origin xyz="0 0 0" rpy="0 0 0"/>
+	  </xacro:default_dvl>
 
 How to - Gazebo tutorials for sensors:
 https://classic.gazebosim.org/tutorials?cat=sensors 
 
+# Integration Progress Snapshots
+Terminal showing `catkin_make_isolated` has run successfully as well as the launch file.
+![Terminal](https://user-images.githubusercontent.com/88146518/169041620-3b5f74cd-0a7d-4434-ab20-de668446fb02.png)
+
+BlueRov in Gazebo visually showing the DVL sensor in Red (on top of the bluerov)
+![GazeboDVL](https://user-images.githubusercontent.com/88146518/169041673-3311d174-8b7c-4ffc-a547-517036faff44.png)
+
+RVIZ with BLUEROV and TF added (showing the DVL topics on left)
+![rvizDVL](https://user-images.githubusercontent.com/88146518/169041704-8b472998-aa01-47c4-a19d-8bc2fc3ab615.png)
+
+rostopic list (highlighting DVL topics)
+![rostopics](https://user-images.githubusercontent.com/88146518/169042576-11041dce-70f0-42dd-8c6f-a26d156a8ec3.png)
+
+rostopic info
+- `/bluerov2/dvl`
+![image](https://user-images.githubusercontent.com/88146518/169042738-cd1f1b97-be38-4cc9-a8fe-a68a2366c49b.png)
+
+- `/blurov2/dvl/state`
+![image](https://user-images.githubusercontent.com/88146518/169042950-c3bfed79-2fa5-42a3-85b6-535cdd16b882.png)
+
+- `/bluerov2/dvl_sonar0` 
+![image](https://user-images.githubusercontent.com/88146518/169043246-f7047921-b73b-4afd-b59e-3aa6a8f70440.png)
+
+- `/bluerov2/dvl_sonar1`
+![image](https://user-images.githubusercontent.com/88146518/169043279-18794c48-4e13-4eb8-a3fd-4a0eb5c577e6.png)
+
+- `/bluerov2/dvl_sonar2`
+![image](https://user-images.githubusercontent.com/88146518/169043326-89b50f9f-1011-4e51-80fa-21fe4656f34a.png)
+
+- `/bluerov2/dvl_sonar3`
+![image](https://user-images.githubusercontent.com/88146518/169043375-b62f7254-28d2-4c76-93de-d0fb01b41990.png)
+
+- `/bluerov2/dvl_twist`
+![image](https://user-images.githubusercontent.com/88146518/169043400-7570d3f8-4cca-45e7-ba26-d51e54116d7e.png)
+
+
 # Rostopic List (18/05/2022)
-/bluerov2/automatic_on
-/bluerov2/camera_info
-/bluerov2/cmd_vel
-/bluerov2/current_velocity
-/bluerov2/current_velocity_marker
-/bluerov2/depth/camera_info_real_info
-/bluerov2/depth/image_raw
-/bluerov2/depth/image_raw_depth_raw_sonar
-/bluerov2/depth/image_raw_multibeam
-/bluerov2/depth/image_raw_normals
-/bluerov2/depth/image_raw_raw_sonar
-/bluerov2/depth/image_raw_sonar
-/bluerov2/dp_controller/error
-/bluerov2/dp_controller/input_trajectory
-/bluerov2/dp_controller/reference
-/bluerov2/dp_controller/trajectory
-/bluerov2/dp_controller/waypoints
-/bluerov2/dvl
-/bluerov2/dvl/state
-/bluerov2/dvl_sonar0
-/bluerov2/dvl_sonar1
-/bluerov2/dvl_sonar2
-/bluerov2/dvl_sonar3
-/bluerov2/dvl_twist
-/bluerov2/image_raw
-/bluerov2/image_raw/compressed
-/bluerov2/image_raw/compressed/parameter_descriptions
-/bluerov2/image_raw/compressed/parameter_updates
-/bluerov2/image_raw/compressedDepth
-/bluerov2/image_raw/compressedDepth/parameter_descriptions
-/bluerov2/image_raw/compressedDepth/parameter_updates
-/bluerov2/image_raw/theora
-/bluerov2/image_raw/theora/parameter_descriptions
-/bluerov2/image_raw/theora/parameter_updates
-/bluerov2/imu
-/bluerov2/imu/state
-/bluerov2/interpolator_visual_markers
-/bluerov2/is_submerged
-/bluerov2/joint_states
-/bluerov2/points
-/bluerov2/pose_gt
-/bluerov2/pose_gt/state
-/bluerov2/pressure
-/bluerov2/pressure/state
-/bluerov2/station_keeping_on
-/bluerov2/thruster_manager/input
-/bluerov2/thruster_manager/input_stamped
-/bluerov2/thrusters/0/dynamic_state_efficiency
-/bluerov2/thrusters/0/input
-/bluerov2/thrusters/0/is_on
-/bluerov2/thrusters/0/thrust
-/bluerov2/thrusters/0/thrust_efficiency
-/bluerov2/thrusters/0/thrust_wrench
-/bluerov2/thrusters/1/dynamic_state_efficiency
-/bluerov2/thrusters/1/input
-/bluerov2/thrusters/1/is_on
-/bluerov2/thrusters/1/thrust
-/bluerov2/thrusters/1/thrust_efficiency
-/bluerov2/thrusters/1/thrust_wrench
-/bluerov2/thrusters/2/dynamic_state_efficiency
-/bluerov2/thrusters/2/input
-/bluerov2/thrusters/2/is_on
-/bluerov2/thrusters/2/thrust
-/bluerov2/thrusters/2/thrust_efficiency
-/bluerov2/thrusters/2/thrust_wrench
-/bluerov2/thrusters/3/dynamic_state_efficiency
-/bluerov2/thrusters/3/input
-/bluerov2/thrusters/3/is_on
-/bluerov2/thrusters/3/thrust
-/bluerov2/thrusters/3/thrust_efficiency
-/bluerov2/thrusters/3/thrust_wrench
-/bluerov2/thrusters/4/dynamic_state_efficiency
-/bluerov2/thrusters/4/input
-/bluerov2/thrusters/4/is_on
-/bluerov2/thrusters/4/thrust
-/bluerov2/thrusters/4/thrust_efficiency
-/bluerov2/thrusters/4/thrust_wrench
-/bluerov2/thrusters/5/dynamic_state_efficiency
-/bluerov2/thrusters/5/input
-/bluerov2/thrusters/5/is_on
-/bluerov2/thrusters/5/thrust
-/bluerov2/thrusters/5/thrust_efficiency
-/bluerov2/thrusters/5/thrust_wrench
-/bluerov2/time_to_target
-/bluerov2/trajectory_tracking_on
-/bluerov2/using_global_current_velocity
-/clock
-/gazebo/link_states
-/gazebo/model_states
-/gazebo/parameter_descriptions
-/gazebo/parameter_updates
-/gazebo/set_link_state
-/gazebo/set_model_state
-/ground_truth_to_tf_bluerov2/euler
-/ground_truth_to_tf_bluerov2/pose
-/hydrodynamics/current_velocity
-/rosout
-/rosout_agg
-/tf
-/tf_static
+	/bluerov2/automatic_on
+	/bluerov2/camera_info
+	/bluerov2/cmd_vel
+	/bluerov2/current_velocity
+	/bluerov2/current_velocity_marker
+	/bluerov2/depth/camera_info_real_info
+	/bluerov2/depth/image_raw
+	/bluerov2/depth/image_raw_depth_raw_sonar
+	/bluerov2/depth/image_raw_multibeam
+	/bluerov2/depth/image_raw_normals
+	/bluerov2/depth/image_raw_raw_sonar
+	/bluerov2/depth/image_raw_sonar
+	/bluerov2/dp_controller/error
+	/bluerov2/dp_controller/input_trajectory
+	/bluerov2/dp_controller/reference
+	/bluerov2/dp_controller/trajectory
+	/bluerov2/dp_controller/waypoints
+	/bluerov2/dvl
+	/bluerov2/dvl/state
+	/bluerov2/dvl_sonar0
+	/bluerov2/dvl_sonar1
+	/bluerov2/dvl_sonar2
+	/bluerov2/dvl_sonar3
+	/bluerov2/dvl_twist
+	/bluerov2/image_raw
+	/bluerov2/image_raw/compressed
+	/bluerov2/image_raw/compressed/parameter_descriptions
+	/bluerov2/image_raw/compressed/parameter_updates
+	/bluerov2/image_raw/compressedDepth
+	/bluerov2/image_raw/compressedDepth/parameter_descriptions
+	/bluerov2/image_raw/compressedDepth/parameter_updates
+	/bluerov2/image_raw/theora
+	/bluerov2/image_raw/theora/parameter_descriptions
+	/bluerov2/image_raw/theora/parameter_updates
+	/bluerov2/imu
+	/bluerov2/imu/state
+	/bluerov2/interpolator_visual_markers
+	/bluerov2/is_submerged
+	/bluerov2/joint_states
+	/bluerov2/points
+	/bluerov2/pose_gt
+	/bluerov2/pose_gt/state
+	/bluerov2/pressure
+	/bluerov2/pressure/state
+	/bluerov2/station_keeping_on
+	/bluerov2/thruster_manager/input
+	/bluerov2/thruster_manager/input_stamped
+	/bluerov2/thrusters/0/dynamic_state_efficiency
+	/bluerov2/thrusters/0/input
+	/bluerov2/thrusters/0/is_on
+	/bluerov2/thrusters/0/thrust
+	/bluerov2/thrusters/0/thrust_efficiency
+	/bluerov2/thrusters/0/thrust_wrench
+	/bluerov2/thrusters/1/dynamic_state_efficiency
+	/bluerov2/thrusters/1/input
+	/bluerov2/thrusters/1/is_on
+	/bluerov2/thrusters/1/thrust
+	/bluerov2/thrusters/1/thrust_efficiency
+	/bluerov2/thrusters/1/thrust_wrench
+	/bluerov2/thrusters/2/dynamic_state_efficiency
+	/bluerov2/thrusters/2/input
+	/bluerov2/thrusters/2/is_on
+	/bluerov2/thrusters/2/thrust
+	/bluerov2/thrusters/2/thrust_efficiency
+	/bluerov2/thrusters/2/thrust_wrench
+	/bluerov2/thrusters/3/dynamic_state_efficiency
+	/bluerov2/thrusters/3/input
+	/bluerov2/thrusters/3/is_on
+	/bluerov2/thrusters/3/thrust
+	/bluerov2/thrusters/3/thrust_efficiency
+	/bluerov2/thrusters/3/thrust_wrench
+	/bluerov2/thrusters/4/dynamic_state_efficiency
+	/bluerov2/thrusters/4/input
+	/bluerov2/thrusters/4/is_on
+	/bluerov2/thrusters/4/thrust
+	/bluerov2/thrusters/4/thrust_efficiency
+	/bluerov2/thrusters/4/thrust_wrench
+	/bluerov2/thrusters/5/dynamic_state_efficiency
+	/bluerov2/thrusters/5/input
+	/bluerov2/thrusters/5/is_on
+	/bluerov2/thrusters/5/thrust
+	/bluerov2/thrusters/5/thrust_efficiency
+	/bluerov2/thrusters/5/thrust_wrench
+	/bluerov2/time_to_target
+	/bluerov2/trajectory_tracking_on
+	/bluerov2/using_global_current_velocity
+	/clock
+	/gazebo/link_states
+	/gazebo/model_states
+	/gazebo/parameter_descriptions
+	/gazebo/parameter_updates
+	/gazebo/set_link_state
+	/gazebo/set_model_state
+	/ground_truth_to_tf_bluerov2/euler
+	/ground_truth_to_tf_bluerov2/pose
+	/hydrodynamics/current_velocity
+	/rosout
+	/rosout_agg
+	/tf
+	/tf_static
 
