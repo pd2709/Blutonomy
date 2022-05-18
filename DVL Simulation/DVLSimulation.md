@@ -305,3 +305,8 @@ rostopic info
 	/tf
 	/tf_static
 
+
+### Next
+- have a look at scaling (does it scale the visual model?) and adding parameters
+- what does deprecated really mean?
+- Terminal output of dvl data from simulation
