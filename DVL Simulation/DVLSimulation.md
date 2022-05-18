@@ -116,7 +116,10 @@ What is included in the urdf: colours, material and links (think of Denavit-Hart
 	<link name="${namespace}/forward_sonar${suffix}_optical_frame"/>
   </xacro:macro>
   
-  
+### Current Error
+[ERROR]: Mesh scale was specified, but could not be parsed: Parser found 0 elements but 3 expected while parsing vector [  ]
+[ERROR]: Could not parse visual element for Link [bluerov2/dvl_link]
+[ERROR]: Failed to build tree: parent link [bluerov2/baselink] of joint [bluerov2/dvl_joint] not found.  This is not valid according to the URDF spec. Every link you refer to from a joint needs to be explicitly defined in the robot description. To fix this problem you can either remove this joint [bluerov2/dvl_joint] from your urdf file, or add "<link name="bluerov2/baselink" />" to your urdf file.
   
 # Further Notes
 
