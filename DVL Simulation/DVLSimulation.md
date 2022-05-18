@@ -123,6 +123,7 @@ What is included in the urdf: colours, material and links (think of Denavit-Hart
 
 ### DVL Xacro Macros
 
+NOT WORKING!!!
   <xacro:dvl_plugin_macro 
       namespace="${namespace}"
       parent_link="${namespace}/base_link" 
@@ -134,18 +135,11 @@ What is included in the urdf: colours, material and links (think of Denavit-Hart
       noise_amplitude="" >
       <origin xyz="0 0 0" rpy="0 0 0" />
   </xacro:dvl_plugin_macro>
-    
-  <xacro:default_dvl 
-      namespace="${namespace}"
-      parent_link="${namespace}/base_link" 
-      topic="dvl_sonar"
-      scale=""
-      update_rate="5"
-      reference_frame=""
-      noise_sigma=""
-      noise_amplitude="" >
+  
+  WORKING!!! (ALSO DEPRECATED)
+  <xacro:default_dvl namespace="${namespace}" parent_link="${namespace}/base_link">
       <origin xyz="0 0 0" rpy="0 0 0" />
-  </xacro:default_dvl>
+  </xacro:default_dvl >
     
 # Further Notes
 
