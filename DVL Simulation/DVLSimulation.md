@@ -123,7 +123,7 @@ What is included in the urdf: colours, material and links (think of Denavit-Hart
 
 ### DVL Xacro Macros
 
-NOT WORKING!!!
+NOT WORKING!!! (GOOD IF WE WANT TO SCALE THE DVL -> BUT WHAT IS SCALED? THE MESH?)
   <xacro:dvl_plugin_macro 
       namespace="${namespace}"
       parent_link="${namespace}/base_link" 
