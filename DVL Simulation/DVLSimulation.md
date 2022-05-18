@@ -116,13 +116,26 @@ What is included in the urdf: colours, material and links (think of Denavit-Hart
 	<link name="${namespace}/forward_sonar${suffix}_optical_frame"/>
   </xacro:macro>
   
- ### Code Control
- 
- 
- 
- ### Current Errors
-[ERROR]: Mesh scale was specified, but could not be parsed: Parser found 0 elements but 3 expected while parsing vector [  ]  
-[ERROR]: Could not parse visual element for Link [bluerov2/dvl_link]  
-[ERROR]: Failed to build tree: parent link [bluerov2/baselink] of joint [bluerov2/dvl_joint] not found.  This is not valid according to the URDF spec. Every link you refer to from a joint needs to be explicitly defined in the robot description. To fix this problem you can either remove this joint [bluerov2/dvl_joint] from your urdf file, or add "<link name="bluerov2/baselink" />" to your urdf file.  
- 
- 
+  
+  
+# Further Notes
+
+Wiki on xacro:
+https://wiki.ros.org/xacro 
+
+subscriber and publisher for DVL info (python code):
+https://github.com/waterlinked/dvl-a50-ros-driver/tree/master/scripts 
+
+DVL sensor msgs:
+http://docs.ros.org/en/hydro/api/underwater_sensor_msgs/html/msg/DVL.html 
+
+documentation on a submarine simulator with gazebo (example has good instructions):
+https://github.com/paagutie/submarine/blob/master/Marum_simulator.pdf
+
+Add the following lines to 'sensors.xacro' to add dvl sensor:
+ <xacro:default_dvl namespace="${namespace}" parent_link="${namespace}/base_link">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:default_dvl>
+
+How to - Gazebo tutorials for sensors:
+https://classic.gazebosim.org/tutorials?cat=sensors 
