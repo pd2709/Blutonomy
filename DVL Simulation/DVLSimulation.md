@@ -301,12 +301,117 @@ rostopic info
 	/ground_truth_to_tf_bluerov2/pose
 	/hydrodynamics/current_velocity
 	/rosout
-	/rosout_agg
+	stopic /rosout_agg
 	/tf
 	/tf_static
 
+# Rostopic echo /bluerov2/dvl  
+    header:  
+      seq: 746   
+      stamp:   
+        secs: 107   
+        nsecs: 628000000   
+      frame_id: "bluerov2/dvl_link"   
+    velocity:   
+      x: -2.05290318627e-08   
+      y: 0.0122516323095  
+      z: 7.05966919942e-06  
+    velocity_covariance: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]  
+    altitude: 61.629863739  
+    beams:  
+    
+    range: 81.0  
+    range_covariance: 0.0  
+    velocity: 0.0  
+    velocity_covariance: 0.0  
+    pose:   
+      header:   
+        seq: 0  
+        stamp:   
+          secs: 0  
+          nsecs: 204000000  
+        frame_id: "bluerov2/dvl_sonar0_link"  
+      pose:   
+        position:   
+          x: 0.0  
+          y: 0.0  
+          z: 0.0  
+        orientation:   
+          x: 0.0  
+          y: -1.0  
+          z: 0.0  
+          w: 0.966389978135  
+     
+    range: 81.0  
+    range_covariance: 0.0  
+    velocity: 0.0  
+    velocity_covariance: 0.0  
+    pose:   
+      header:   
+        seq: 0  
+        stamp:   
+          secs: 0  
+          nsecs: 204000000  
+        frame_id: "bluerov2/dvl_sonar1_link"  
+      pose:   
+        position:   
+          x: 0.0  
+          y: 0.0  
+          z: 0.0  
+        orientation:   
+          x: 0.0  
+          y: 0.0  
+          z: 1.0  
+          w: 0.966389978135  
+       
+    range: 3.51945090294  
+    range_covariance: 0.0  
+    velocity: 0.0  
+    velocity_covariance: 0.0  
+    pose:   
+      header:   
+        seq: 0  
+        stamp:   
+          secs: 0  
+          nsecs: 204000000  
+        frame_id: "bluerov2/dvl_sonar2_link"  
+      pose:   
+        position:   
+          x: 0.0   
+          y: 0.0  
+          z: 0.0  
+        orientation:   
+          x: 0.0  
+          y: 1.0  
+          z: 0.0  
+          w: 0.966389978135  
+       
+    range: 81.0  
+    range_covariance: 0.0  
+    velocity: 0.0  
+    velocity_covariance: 0.0  
+    pose:   
+      header:   
+        seq: 0  
+        stamp:   
+          secs: 0  
+          nsecs: 204000000  
+        frame_id: "bluerov2/dvl_sonar3_link"  
+      pose:   
+        position:   
+          x: 0.0  
+          y: 0.0  
+          z: 0.0  
+        orientation:   
+          x: 0.0  
+          y: 0.0  
+          z: -1.0  
+          w: 0.966389978135`  
+---  
+  
 
 ### Next
 - have a look at scaling (does it scale the visual model?) and adding parameters
 - what does deprecated really mean?
 - Terminal output of dvl data from simulation
+
