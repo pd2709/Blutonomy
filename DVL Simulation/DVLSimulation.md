@@ -439,3 +439,7 @@ rostopic info
 - what does deprecated really mean?
 - Terminal output of dvl data from simulation
 
+# missing topic from rostopic list command
+![image](https://user-images.githubusercontent.com/88146518/170007969-52e3881d-c20f-423d-80e8-ce9a763ce72b.png)
+![image](https://user-images.githubusercontent.com/88146518/170007989-89a5d798-b8ef-4f90-b933-631abb9933d0.png)
+![image](https://user-images.githubusercontent.com/88146518/170008010-e55f8d1a-2cfb-48f8-b728-bd5b77ab8ad9.png)
