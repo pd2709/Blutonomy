@@ -408,7 +408,31 @@ rostopic info
           z: -1.0  
           w: 0.966389978135`  
 ---  
-  
+# Rostopic echo bluerov2/imu
+	header:   
+	  seq: 3012  
+	  stamp:   
+	    secs: 60  
+	    nsecs: 262000000  
+	  frame_id: "bluerov2/imu1_link"  
+	orientation:   
+	  x: 2.03530660864e-05  
+	  y: -0.00686565444963  
+	  z: 8.66754028487e-06  
+	  w: 0.999976430872  
+	orientation_covariance: [0.0001, 0.0, 0.0, 0.0, 0.0001, 0.0, 0.0, 0.0, 0.0001]  
+	angular_velocity:   
+	  x: -1.45231253002e-08  
+	  y: -0.00225401373389  
+	  z: -1.32590579578e-05  
+	angular_velocity_covariance: [1.1519236000000001e-07, 0.0, 0.0, 0.0, 1.1519236000000001e-07, 0.0, 0.0, 0.0, 1.1519236000000001e-07]  
+	linear_acceleration:   
+	  x: 0.134477133585  
+	  y: -7.32809458324e-06  
+	  z: 9.80998584481  
+	linear_acceleration_covariance: [1.6e-05, 0.0, 0.0, 0.0, 1.6e-05, 0.0, 0.0, 0.0, 1.6e-05]
+
+
 
 ### Next
 - have a look at scaling (does it scale the visual model?) and adding parameters
