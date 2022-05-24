@@ -439,7 +439,33 @@ rostopic info
 - what does deprecated really mean?
 - Terminal output of dvl data from simulation
 
-# missing topic from rostopic list command
+# 24/05/2022
+- looked into libraries and researched gtsam, isam2.
+	https://github.com/haidai/gtsam/blob/master/examples/ImuFactorsExample.cpp
+	https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7913909/
+- dive into the cpp files for SLAM code.
+- Looked at code structure, imucallback.
+- imu and dvl messages compared (to see if we can swap and place)
+- Navigate to MattD_SLAM_code/ folder to see commands.
+- difference between experimental (real life) and simulation (gazebo) launch: 
+experimental - mavros
+![image](https://user-images.githubusercontent.com/88146518/170012183-3e95fa19-72ed-4b49-b199-a5eb33dd782e.png)
+slam - bluerov2
+![image](https://user-images.githubusercontent.com/88146518/170012518-cd957654-ad74-494b-8f19-0e17a54149f4.png)
+do we need to remap?
+what is range for?
+
+### Planned Approach to integrate DVL
+- remapping the link between toics
+- simple subscriber to slam/dvl/data
+- create dvlcallback
+- get velocity, get time, calculate acceleration, calculate displacement (refer to: https://github.com/print-Eruki/integration-task/blob/main/src/displacement_integration.py)
+- generate data
+- attempt to compare acceleration measured using imu and calculated acceleration using dvl velocity and time. 
+- 
+
+
+## missing topic from rostopic list command
 ![image](https://user-images.githubusercontent.com/88146518/170007969-52e3881d-c20f-423d-80e8-ce9a763ce72b.png)
 ![image](https://user-images.githubusercontent.com/88146518/170007989-89a5d798-b8ef-4f90-b933-631abb9933d0.png)
 ![image](https://user-images.githubusercontent.com/88146518/170008010-e55f8d1a-2cfb-48f8-b728-bd5b77ab8ad9.png)
