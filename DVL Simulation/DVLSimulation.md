@@ -462,8 +462,8 @@ what is range for?
 - get velocity, get time, calculate acceleration, calculate displacement (refer to: https://github.com/print-Eruki/integration-task/blob/main/src/displacement_integration.py)
 - generate data
 - attempt to compare acceleration measured using imu and calculated acceleration using dvl velocity and time. 
-- 
-
+- does Matt's AKAZE algorithm record location?
+- look into cones placed in simulation 
 
 ## missing topic from rostopic list command
 ![image](https://user-images.githubusercontent.com/88146518/170007969-52e3881d-c20f-423d-80e8-ce9a763ce72b.png)
