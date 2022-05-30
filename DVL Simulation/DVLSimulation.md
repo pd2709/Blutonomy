@@ -471,3 +471,17 @@ what is range for?
 ![image](https://user-images.githubusercontent.com/88146518/170007969-52e3881d-c20f-423d-80e8-ce9a763ce72b.png)
 ![image](https://user-images.githubusercontent.com/88146518/170007989-89a5d798-b8ef-4f90-b933-631abb9933d0.png)
 ![image](https://user-images.githubusercontent.com/88146518/170008010-e55f8d1a-2cfb-48f8-b728-bd5b77ab8ad9.png)
+
+
+## IMU & DVL Integration further research
+
+The IMU orientation is usually obtained by integrating the angular velocity measured with the gyroscope.
+This allows for immediate detection of orientation changes but leads to a drift of the estimated orientation over time, e.g., due to gyroscope bias 
+
+In the case of simple dead-reckoning navigation, some corrections were applied as follows.
+The DVL velocity was smoothed with IMU acceleration using a Kalman filter (KF), and the
+IMU directional accuracy was improved by dynamic zero velocity update (DZUPT). We
+estimated the bias of the yaw rate of the IMU as accurately as possible before the start of
+the GNSS outage. In addition, we considered the slip angle by using the yaw rate angle.
+
+https://answers.ros.org/question/209304/imu-drift-causing-robot-to-drift-in-rviz/
