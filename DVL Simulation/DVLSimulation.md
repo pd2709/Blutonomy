@@ -485,3 +485,5 @@ estimated the bias of the yaw rate of the IMU as accurately as possible before t
 the GNSS outage. In addition, we considered the slip angle by using the yaw rate angle.
 
 https://answers.ros.org/question/209304/imu-drift-causing-robot-to-drift-in-rviz/
+Improvement on an Inertial-Doppler Navigation System of Underwater Vehicles Using a Complementary Range Sonar:
+https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=1405508
