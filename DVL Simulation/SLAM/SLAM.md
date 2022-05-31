@@ -1,4 +1,9 @@
- # ~/matt_thesis/catkin_ws$ rostopic echo /slam/result
+ `cd ~/matt_thesis/catkin_ws`
+ `source devel_isolated/setup.bash`
+ 
+ 
+ 
+ # rostopic echo /slam/result
 
   - 
     header: 
@@ -71,7 +76,8 @@ var_B_gyr:
   z: -1.31551933291e-05
 ---
 # rostopic echo /slam/features
-  
+ - polar coordinate of each detected object at that particular time 
+
 header: 
   seq: 619
   stamp: 
