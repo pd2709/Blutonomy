@@ -465,7 +465,7 @@ what is range for?
 - generate data
 - attempt to compare acceleration measured using imu and calculated acceleration using dvl velocity and time. 
 - does Matt's AKAZE algorithm record location?
-- look into cones placed in simulation 
+- look into cones placed in simulation - what is publishing the interactive markers, if its placed by gazebo
 
 ## missing topic from rostopic list command
 ![image](https://user-images.githubusercontent.com/88146518/170007969-52e3881d-c20f-423d-80e8-ce9a763ce72b.png)
@@ -473,7 +473,7 @@ what is range for?
 ![image](https://user-images.githubusercontent.com/88146518/170008010-e55f8d1a-2cfb-48f8-b728-bd5b77ab8ad9.png)
 
 
-## IMU & DVL Integration further research
+## 31/05/2022 IMU & DVL Integration further research
 
 The IMU orientation is usually obtained by integrating the angular velocity measured with the gyroscope.
 This allows for immediate detection of orientation changes but leads to a drift of the estimated orientation over time, e.g., due to gyroscope bias 
@@ -487,3 +487,13 @@ the GNSS outage. In addition, we considered the slip angle by using the yaw rate
 https://answers.ros.org/question/209304/imu-drift-causing-robot-to-drift-in-rviz/
 Improvement on an Inertial-Doppler Navigation System of Underwater Vehicles Using a Complementary Range Sonar:
 https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=1405508
+
+loop closure- slam
+Notes from Gibbson:
+- AHRS- track rotation very accurately - combine with linear velocity and the altitude will give you the height from DVL -> thats how we can get dead-reckoning 
+- To do SLAM we need to observe using sonar, not just with imu and dvl.
+
+feature based slam-> then apply optimisation algorithm leasst squares
+out of the bos- g2o(graph based slam) -> turn data into usable 
+start with matlab 
+figure out mbs data
