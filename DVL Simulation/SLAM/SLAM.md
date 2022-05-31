@@ -70,3 +70,56 @@ var_B_gyr:
   y: -0.00100418144986
   z: -1.31551933291e-05
 ---
+# rostopic echo /slam/features
+  
+header: 
+  seq: 619
+  stamp: 
+    secs: 61
+    nsecs: 422000000
+  frame_id: ''
+features: 
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 0
+        nsecs:         0
+      frame_id: ''
+    range: 5.95500659943
+    elevation: 0.0296018365771
+    bearing: 0.342063695192
+    id: 0
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 0
+        nsecs:         0
+      frame_id: ''
+    range: 7.83522987366
+    elevation: 0.0746018365026
+    bearing: 0.263397604227
+    id: 0
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 0
+        nsecs:         0
+      frame_id: ''
+    range: 7.80300474167
+    elevation: 0.0746018365026
+    bearing: -0.247620657086
+    id: 0
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 0
+        nsecs:         0
+      frame_id: ''
+    range: 5.90076971054
+    elevation: 0.0296018365771
+    bearing: -0.337694495916
+    id: 0
