@@ -178,3 +178,8 @@ Note: There is a header for each detected feature at a particular time step
         bearing: -0.315354079008
         id: 0
     ---
+
+
+# More research
+## AHRS
+https://gtsam.org/doxygen/4.0.0/a01268_source.html
