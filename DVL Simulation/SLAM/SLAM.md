@@ -178,7 +178,7 @@ Note: There is a header for each detected feature at a particular time step
         bearing: -0.315354079008
         id: 0
     ---
-# Real IMU DATA  
+# Rostopic echo mavros/imu/data
 ![image](https://user-images.githubusercontent.com/85168871/172029735-158b9689-2d15-4b7c-bb17-2cb95977a47d.png)  
   
     header: 
