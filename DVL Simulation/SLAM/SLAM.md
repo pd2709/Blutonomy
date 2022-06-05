@@ -210,6 +210,9 @@ Note: There is a header for each detected feature at a particular time step
   - This can be checked with the cmd `rospack plugins uuv_sensor_ros_plugins_msgs` 
   - ![image](https://user-images.githubusercontent.com/85168871/172045778-2d206132-8a7d-42b7-bd14-8d311f7569eb.png)  
  
+ # Research code structure  
+ How to subscribe to multiple topics and publish to another topic  
+ - https://robotics.stackexchange.com/questions/20089/not-trivial-ros-how-to-subscribe-to-multiple-topics-and-publish-to-another-top 
   
 # More research
 ## AHRS
