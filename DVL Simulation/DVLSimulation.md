@@ -505,3 +505,10 @@ figure out mbs data
 ![image](https://user-images.githubusercontent.com/88146518/172031094-61678c77-81ac-40f7-b7a5-feac2470ee52.png)
 ![image](https://user-images.githubusercontent.com/88146518/172031123-a5f4937d-1666-4c2c-8294-5f5ae50bd32e.png)
 https://waterlinked.github.io/dvl/dvl-protocol/#dead-reckoning-report
+
+### Blutonomy Creating dead reckoning msg
+Successful make:
+![image](https://user-images.githubusercontent.com/88146518/172032367-ec6ce46a-a7be-4b19-a87e-40f4562e7fbb.png)
+deadReckoning.msg file:
+![image](https://user-images.githubusercontent.com/88146518/172032384-102b6656-c8f9-44de-8cac-ecce87104dbf.png)
+
