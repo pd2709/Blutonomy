@@ -181,6 +181,30 @@ Note: There is a header for each detected feature at a particular time step
 # Real IMU DATA  
 ![image](https://user-images.githubusercontent.com/85168871/172029735-158b9689-2d15-4b7c-bb17-2cb95977a47d.png)  
   
+    header: 
+      seq: 13657
+      stamp: 
+        secs: 1649718027
+        nsecs: 495378389
+      frame_id: "base_link"
+    orientation: 
+      x: 0.00415225432238
+      y: -0.0243123515396
+      z: -0.669372864911
+      w: -0.742517094798
+    orientation_covariance: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+    angular_velocity: 
+      x: -0.00022425246425
+      y: 0.0008114639204
+      z: 0.000987689942122
+    angular_velocity_covariance: [1.2184696791468346e-07, 0.0, 0.0, 0.0, 1.2184696791468346e-07, 0.0, 0.0, 0.0, 1.2184696791468346e-07]
+    linear_acceleration: 
+      x: -0.3334261
+      y: 0.0588399
+      z: 9.85568325
+    linear_acceleration_covariance: [8.999999999999999e-08, 0.0, 0.0, 0.0, 8.999999999999999e-08, 0.0, 0.0, 0.0, 8.999999999999999e-08]
+    ---
+  
 # More research
 ## AHRS
 https://gtsam.org/doxygen/4.0.0/a01268_source.html
