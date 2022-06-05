@@ -204,7 +204,15 @@ Note: There is a header for each detected feature at a particular time step
       z: 9.85568325
     linear_acceleration_covariance: [8.999999999999999e-08, 0.0, 0.0, 0.0, 8.999999999999999e-08, 0.0, 0.0, 0.0, 8.999999999999999e-08]
     ---
+# Research on plugins
+  
+  Trying to make the uuv simulator plugin useable  
+  - This can be checked with the cmd `rospack plugins uuv_sensor_ros_plugins_msgs` 
+  - ![image](https://user-images.githubusercontent.com/85168871/172045778-2d206132-8a7d-42b7-bd14-8d311f7569eb.png)  
+ 
   
 # More research
 ## AHRS
 https://gtsam.org/doxygen/4.0.0/a01268_source.html
+
+
