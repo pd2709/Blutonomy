@@ -508,7 +508,10 @@ https://waterlinked.github.io/dvl/dvl-protocol/#dead-reckoning-report
 
 ### Blutonomy Creating dead reckoning msg
 Successful make:
+
 ![image](https://user-images.githubusercontent.com/88146518/172032367-ec6ce46a-a7be-4b19-a87e-40f4562e7fbb.png)
+
 deadReckoning.msg file:
+
 ![image](https://user-images.githubusercontent.com/88146518/172032384-102b6656-c8f9-44de-8cac-ecce87104dbf.png)
 
