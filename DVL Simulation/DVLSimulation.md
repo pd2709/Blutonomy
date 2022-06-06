@@ -503,9 +503,19 @@ Quaternion to RPY: https://gist.github.com/marcoarruda/f931232fe3490b7fa20dbb38d
 
 
 ## DVL Dead reckoning Expected Report
-![image](https://user-images.githubusercontent.com/88146518/172031094-61678c77-81ac-40f7-b7a5-feac2470ee52.png)
-![image](https://user-images.githubusercontent.com/88146518/172031123-a5f4937d-1666-4c2c-8294-5f5ae50bd32e.png)
-https://waterlinked.github.io/dvl/dvl-protocol/#dead-reckoning-report
+![image](https://user-images.githubusercontent.com/88146518/172031094-61678c77-81ac-40f7-b7a5-feac2470ee52.png)  
+![image](https://user-images.githubusercontent.com/88146518/172031123-a5f4937d-1666-4c2c-8294-5f5ae50bd32e.png)  
+https://waterlinked.github.io/dvl/dvl-protocol/#dead-reckoning-report  
+Figure of merit: https://www.sciencedirect.com/topics/chemistry/figure-of-merit  
+### Quaternion to RPY  
+https://math.stackexchange.com/questions/147028/are-euler-angles-the-same-as-pitch-roll-and-yaw  
+https://stackoverflow.com/questions/36501262/quaternion-to-rotation-matrix-incorrect-values-using-eigen-library  
+https://answers.ros.org/question/58742/quaternion-to-roll-pitch-yaw/  
+https://answers.ros.org/question/58863/incorrect-rollpitch-yaw-values-using-getrpy/  
+
+### Timing
+https://answers.ros.org/question/229445/how-can-i-get-time-difference-of-two-messages-published-by-same-publisher-on-same-topic/   
+
 
 ### Blutonomy Creating dead reckoning msg
 Successful make:
@@ -541,4 +551,24 @@ rostopic echo /deadReckoning:
 	format: ''
 	---
 			
+# Extended Kalman Filter  
 
+## Lighter reading
+Generic Kalman Filter: https://openimu.readthedocs.io/en/latest/algorithms/KalmanFilter.html  
+
+## Deeper reading
+https://robotics.stackexchange.com/questions/964/extended-kalman-filter-using-odometry-motion-model  
+https://mdpi-res.com/d_attachment/sensors/sensors-11-09182/article_deploy/sensors-11-09182.pdf?version=1403316184  
+
+# AHRS   
+
+## Lighter reading  
+
+## Deeper reading  
+AHRS Code cpp: https://github.com/emlid/Navio/blob/master/C%2B%2B/Examples/AHRS/AHRS.cpp    
+AHRS Code hpp: https://github.com/emlid/Navio/blob/master/C%2B%2B/Examples/AHRS/AHRS.hpp  
+
+# Example SLAM Code  
+https://github.com/WaldumA/sonar_slam/blob/c638b6ecf00101b16d9ff62a97267ca29e6ef083/src/sonar_slam.cpp   
+https://github.com/MohamedMehery/Localization-package-AUV/blob/84fba624f7ad61e58475d19d512ba1aeeec0d119/navigation/underwater_odom/src/underwater_odom_node.cpp   
+https://github.com/luansilveira/dolphin_slam/blob/e58680a48fdd9f23b98b733f0a654e8a945cf5de/src/dolphin_slam/robot_state.cpp   
