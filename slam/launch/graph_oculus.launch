@@ -1,0 +1,39 @@
+<!-- Launch factor graph optimisation node for Oculus (experimental) data -->
+<launch>
+
+    <!-- Put IMU on correct topic -->
+    <remap from="/slam/imu/data" to="/mavros/imu/data"/>
+
+    <!-- Start RViz visualisation -->
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find slam)/rviz/bluerov2_experimental.rviz" />
+
+    <node name="graph" pkg="slam" type="graph" respawn="false" output = "screen">
+
+        <param name = "publish_frame" type = "string" value = "map" /> <!-- publish result in this frame -->
+
+        <param name = "imu_period" type = "double" value = "0.1" /> <!-- IMU period in seconds -->
+
+        <!-- References for IMU parameters for oculus:
+        https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6767180/ (noise)
+        https://github.com/borglab/gtsam/issues/213 (random walk)
+        -->
+        <param name = "accel_noise_sigma" type = "double" value = "0.003924" /> <!-- m s^-2 Hz^-0.5 -->
+        <param name = "gyro_noise_sigma" type = "double" value = "0.00008726" /> <!-- rad s^-1 Hz^-0.5 -->
+        <param name = "accel_bias_rw_sigma" type = "double" value = "0.0049" /> <!-- m s^-3 Hz^-0.5 -->
+        <param name = "gyro_bias_rw_sigma" type = "double" value = "0.00000145" /> <!-- rad s^-2 Hz^-0.5 -->
+
+        <param name = "landmark_noise_elev" type = "double" value = "0.05" />    <!-- was 0.01 rad -->
+        <param name = "landmark_noise_bear" type = "double" value = "0.05" />    <!-- was 0.01 rad -->
+        <param name = "landmark_noise_range" type = "double" value = "0.05" />   <!-- was 0.01 m -->
+
+        <param name = "g" type = "double" value = "9.864" /> <!-- m/s^2 -->
+
+        <rosparam param = "sonar_translation">[0.236, 0, -0.159]</rosparam> <!-- x y z -->
+        <rosparam param = "sonar_rotation">[0.991, 0, 0.131, 0]</rosparam> <!-- w x y z -->
+
+        <param name = "should_use_jcbb" type = "bool" value = "true" />            <!-- True for JCBB, else use CP -->
+        <param name = "should_use_depth_factors" type = "bool" value = "true" />    <!-- True for depth factors, else omit -->
+
+
+    </node>
+</launch>

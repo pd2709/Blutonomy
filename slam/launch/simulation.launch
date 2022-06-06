@@ -1,0 +1,5 @@
+<!-- Launch simulated SLAM using UUV Simulator and Gazebo -->
+<launch>
+    <include file="$(find slam)/launch/extract_uuvsim.launch"/>
+    <include file="$(find slam)/launch/graph_uuvsim.launch"/>
+</launch>

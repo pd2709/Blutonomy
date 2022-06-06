@@ -1,0 +1,13 @@
+<!-- Launch data extraction node for UUV Simulator (simulated) data -->
+<launch>
+
+    <node name="extract_uuvsim" pkg="slam" type="extract_uuvsim" respawn="false" output = "screen">
+
+        <!-- AKAZE threhold carefully tuned so that no spurious measurements detected, and all features detected -->
+        <param name = "akaze_threshold" type = "double" value = "0.0004" /> <!-- AKAZE detector threshold -->
+
+
+        <param name = "min_scan_range" type = "double" value = "5.0" /> <!-- Min range to detect from -->
+
+    </node>
+</launch>

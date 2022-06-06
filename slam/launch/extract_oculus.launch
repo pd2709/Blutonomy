@@ -1,0 +1,10 @@
+<!-- Launch data extraction node for oculus (experimental) data -->
+<launch>
+
+    <node name="extract_oculus" pkg="slam" type="extract_oculus" respawn="false" output = "screen">
+
+        <!-- AKAZE threhold carefully tuned so that no spurious measurements detected, and all features detected -->
+        <param name = "akaze_threshold" type = "double" value = "0.001" /> <!-- AKAZE detector threshold -->
+
+    </node>
+</launch>

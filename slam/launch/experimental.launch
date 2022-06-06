@@ -1,0 +1,5 @@
+<!-- Launch experimental SLAM using BlueROV2 IMU and Oculus data -->
+<launch>
+    <include file="$(find slam)/launch/extract_oculus.launch"/>
+    <include file="$(find slam)/launch/graph_oculus.launch"/>
+</launch>
