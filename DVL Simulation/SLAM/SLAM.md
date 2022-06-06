@@ -212,7 +212,9 @@ Note: There is a header for each detected feature at a particular time step
  
  # Research code structure  
  How to subscribe to multiple topics and publish to another topic  
- - https://robotics.stackexchange.com/questions/20089/not-trivial-ros-how-to-subscribe-to-multiple-topics-and-publish-to-another-top 
+ - https://robotics.stackexchange.com/questions/20089/not-trivial-ros-how-to-subscribe-to-multiple-topics-and-publish-to-another-top  
+ - https://github.com/emlid/Navio/blob/master/C%2B%2B/Examples/AHRS/AHRS.hpp  
+ - https://github.com/emlid/Navio/blob/master/C%2B%2B/Examples/AHRS/AHRS.cpp  
   
 # More research
 ## AHRS
