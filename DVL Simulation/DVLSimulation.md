@@ -502,7 +502,7 @@ figure out mbs data
 Quaternion to RPY: https://gist.github.com/marcoarruda/f931232fe3490b7fa20dbb38da1195ac  
 
 
-# DVL Dead reckoning Expected Report
+## DVL Dead reckoning Expected Report
 ![image](https://user-images.githubusercontent.com/88146518/172031094-61678c77-81ac-40f7-b7a5-feac2470ee52.png)
 ![image](https://user-images.githubusercontent.com/88146518/172031123-a5f4937d-1666-4c2c-8294-5f5ae50bd32e.png)
 https://waterlinked.github.io/dvl/dvl-protocol/#dead-reckoning-report
@@ -517,3 +517,28 @@ deadReckoning.msg file:
 ![image](https://user-images.githubusercontent.com/88146518/172032384-102b6656-c8f9-44de-8cac-ecce87104dbf.png)
 
 ![image](https://user-images.githubusercontent.com/88146518/172049726-9c46fe81-8eb1-4283-b18d-a3b7076a3ea2.png)
+
+rostopic echo /deadReckoning:
+
+	header: 
+	  seq: 771
+	  stamp: 
+	    secs: 0
+	    nsecs:         0
+	  frame_id: ''
+	ts: 
+	  secs: 628000000
+	  nsecs:         0
+	x: -2.95618058823
+	y: 1764235.05257
+	z: 1016.59236472
+	std: 0.0
+	roll: -0.000600288845046
+	pitch: -0.0494595149374
+	yaw: 8.71770664959e-05
+	type: ''
+	status: False
+	format: ''
+	---
+			
+
