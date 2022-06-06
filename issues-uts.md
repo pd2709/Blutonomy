@@ -132,3 +132,7 @@ source devel_isolated/setup.bash
   create a rosnode for conversion:
   http://wiki.ros.org/cv_bridge/Tutorials/ConvertingBetweenROSImagesAndOpenCVImagesPython
   http://docs.ros.org/en/api/sensor_msgs/html/msg/Image.html
+  
+  
+# Low Disk Space on Filesystem root  
+![image](https://user-images.githubusercontent.com/85168871/172077211-0dff1030-2844-4868-936b-9b6fceea4891.png)  
