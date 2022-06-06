@@ -498,7 +498,8 @@ out of the bos- g2o(graph based slam) -> turn data into usable
 start with matlab 
 figure out mbs data
 
-
+## Code Research  
+Quaternion to RPY: https://gist.github.com/marcoarruda/f931232fe3490b7fa20dbb38da1195ac  
 
 
 # DVL Dead reckoning Expected Report
