@@ -9,13 +9,9 @@ Following files are inside the source folder:
 ## FILES from intern who worked on SLAM
 Note that the file descriptions can be inaccurate as we have not written the code.
 
-  **associate_jcbb.cpp** - attempt at data association of landmarks.
+  **associate_jcbb.cpp**, **associate_nearest.cpp** - attempt at data association of landmarks.
 
-  **associate_nearest.cpp** - attempt at data association of landmarks.
-
-  **extract.cpp**
-
-  **extract_oculus_node.cpp**
+  **extract.cpp**, **extract_oculus_node.cpp** - Uses AKAZE to filter out keypoints for the aim of extracting landmark information from Multibeam Sonar.
 
   **extract_uuvsim_node.cpp**
 
