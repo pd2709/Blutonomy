@@ -1,0 +1,34 @@
+[oculus_node/OculusHeader]:
+Header Header
+float64 speedOfSoundUsed
+float64 frequency
+float64 temperature
+float64 pressure
+float64 heading
+float64 pitch
+float64 roll
+float64 pingStartTime
+float64 range
+float64 gain
+float64 rangeResolution
+uint32 pingId
+uint32 dataSize
+uint16 rangeCount
+uint16 beamCount
+uint8 freqMode
+================================================================================
+MSG: std_msgs/Header
+# Standard metadata for higher-level stamped data types.
+# This is generally used to communicate timestamped data 
+# in a particular coordinate frame.
+# 
+# sequence ID: consecutively increasing ID 
+uint32 seq
+#Two-integer timestamp that is expressed as:
+# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')
+# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')
+# time-handling sugar is provided by the client library
+time stamp
+#Frame this data is associated with
+string frame_id
+

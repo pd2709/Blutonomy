@@ -1,0 +1,96 @@
+class update_oculus_node_OculusHeader_0429b1a50bf33d905f638861e35ae034(MessageUpdateRule):
+	old_type = "oculus_node/OculusHeader"
+	old_full_text = """
+Header Header
+float64 speedOfSoundUsed
+float64 frequency
+float64 temperature
+float64 pressure
+float64 heading
+float64 pitch
+float64 roll
+float64 pingStartTime
+float64 range
+float64 gain
+float64 rangeResolution
+uint32 pingId
+uint32 dataSize
+uint16 rangeCount
+uint16 beamCount
+uint8 freqMode
+================================================================================
+MSG: std_msgs/Header
+# Standard metadata for higher-level stamped data types.
+# This is generally used to communicate timestamped data 
+# in a particular coordinate frame.
+# 
+# sequence ID: consecutively increasing ID 
+uint32 seq
+#Two-integer timestamp that is expressed as:
+# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')
+# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')
+# time-handling sugar is provided by the client library
+time stamp
+#Frame this data is associated with
+string frame_id
+"""
+
+	new_type = "oculus_node/OculusHeader"
+	new_full_text = """
+Header header
+float64 speedOfSoundUsed
+float64 frequency
+float64 temperature
+float64 pressure
+float64 heading
+float64 pitch
+float64 roll
+float64 pingStartTime
+float64 range
+float64 gain
+float64 rangeResolution
+uint32 pingId
+uint32 dataSize
+uint16 rangeCount
+uint16 beamCount
+uint8 freqMode
+================================================================================
+MSG: std_msgs/Header
+# Standard metadata for higher-level stamped data types.
+# This is generally used to communicate timestamped data 
+# in a particular coordinate frame.
+# 
+# sequence ID: consecutively increasing ID 
+uint32 seq
+#Two-integer timestamp that is expressed as:
+# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')
+# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')
+# time-handling sugar is provided by the client library
+time stamp
+#Frame this data is associated with
+string frame_id
+"""
+
+	order = 0
+	migrated_types = [("OculusHeader", "OculusHeader")]
+
+	valid = True
+
+	def update(self, old_msg, new_msg):
+		new_msg.header = old_msg.Header
+		new_msg.speedOfSoundUsed = old_msg.speedOfSoundUsed
+		new_msg.frequency = old_msg.frequency
+		new_msg.temperature = old_msg.temperature
+		new_msg.pressure = old_msg.pressure
+		new_msg.heading = old_msg.heading
+		new_msg.pitch = old_msg.pitch
+		new_msg.roll = old_msg.roll
+		new_msg.pingStartTime = old_msg.pingStartTime
+		new_msg.range = old_msg.range
+		new_msg.gain = old_msg.gain
+		new_msg.rangeResolution = old_msg.rangeResolution
+		new_msg.pingId = old_msg.pingId
+		new_msg.dataSize = old_msg.dataSize
+		new_msg.rangeCount = old_msg.rangeCount
+		new_msg.beamCount = old_msg.beamCount
+		new_msg.freqMode = old_msg.freqMode

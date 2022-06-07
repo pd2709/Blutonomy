@@ -1,0 +1,17 @@
+Header header
+float64 speedOfSoundUsed
+float64 frequency
+float64 temperature
+float64 pressure
+float64 heading
+float64 pitch
+float64 roll
+float64 pingStartTime
+float64 range
+float64 gain
+float64 rangeResolution
+uint32 pingId
+uint32 dataSize
+uint16 rangeCount
+uint16 beamCount
+uint8 freqMode
