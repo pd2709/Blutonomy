@@ -220,4 +220,8 @@ Note: There is a header for each detected feature at a particular time step
 ## AHRS
 https://gtsam.org/doxygen/4.0.0/a01268_source.html
 
+# SHoudong Recommended Equations
+![eq12](https://user-images.githubusercontent.com/88146518/172499674-0dd016f3-4daa-4539-9fe7-1f3069a1ce2c.png)
+![eq15](https://user-images.githubusercontent.com/88146518/172499612-28656dcf-cb25-4710-b7cc-306bae04817e.png)
+![eq 18 & 19](https://user-images.githubusercontent.com/88146518/172499539-8170573d-935d-40b1-894a-be75a58d16a5.png)
 
