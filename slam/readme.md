@@ -2,11 +2,14 @@
 
 This directory contains the current code for SLAM implementation of BlueROV2.
 
-The launch file we have been using is **simulation.launch**.
+The launch file we have been using is **simulation.launch**. This launch file then launches **extract_uuvsim.launch** and **graph_uuvsim.launch**.   
+  
+To launch the simulation we use the cmd ‘roslaunch slam simulation.launch’.  
 
-Following files are inside the source folder:
+![image](https://user-images.githubusercontent.com/85168871/172343329-bf2ef2b0-d5c0-496b-bd72-81c9dad4773f.png)  
 
-## FILES from intern who worked on SLAM
+
+## SRC FILES from intern who worked on SLAM
 Note that the file descriptions can be inaccurate as we have not written the code.
 
   **associate_jcbb.cpp**, **associate_nearest.cpp** - attempt at data association of landmarks.
@@ -19,6 +22,6 @@ Note that the file descriptions can be inaccurate as we have not written the cod
 
   **slam_geometry.cpp** - geometery calculations to conduct SLAM.
 
-## FILES from UTS Blutonomy group AUT2022
+## SRC FILES from UTS Blutonomy group AUT2022
 
 **deadReckonNode.cpp** - This is our newly created file aimed to perform Dead Reckoning using both DVL and IMU Data.
