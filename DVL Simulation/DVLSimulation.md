@@ -572,3 +572,12 @@ AHRS Code hpp: https://github.com/emlid/Navio/blob/master/C%2B%2B/Examples/AHRS/
 https://github.com/WaldumA/sonar_slam/blob/c638b6ecf00101b16d9ff62a97267ca29e6ef083/src/sonar_slam.cpp   
 https://github.com/MohamedMehery/Localization-package-AUV/blob/84fba624f7ad61e58475d19d512ba1aeeec0d119/navigation/underwater_odom/src/underwater_odom_node.cpp   
 https://github.com/luansilveira/dolphin_slam/blob/e58680a48fdd9f23b98b733f0a654e8a945cf5de/src/dolphin_slam/robot_state.cpp   
+
+**Check and confirm:**
+- Moving forward/backward
+- Moving left/right
+
+/ground_truth_to_tf_bluerov2/pose
+
+Collect in rosbag.
+Assume roll and pitch = 0 and calculate Yaw.
