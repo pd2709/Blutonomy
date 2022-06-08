@@ -1,0 +1,523 @@
+[==========] Running 67 tests from 7 test cases.
+[----------] Global test environment set-up.
+[----------] 3 tests from LandmarkTest
+[ RUN      ] LandmarkTest.create_empty
+[       OK ] LandmarkTest.create_empty (0 ms)
+[ RUN      ] LandmarkTest.create_one_stores_measurement
+Created LandMark factor with keys
+x0
+l0
+
+[       OK ] LandmarkTest.create_one_stores_measurement (0 ms)
+[ RUN      ] LandmarkTest.create_multiple_stores_measurement
+Created LandMark factor with keys
+x0
+x1
+x2
+l0
+
+[       OK ] LandmarkTest.create_multiple_stores_measurement (0 ms)
+[----------] 3 tests from LandmarkTest (0 ms total)
+
+[----------] 5 tests from TransformTest
+[ RUN      ] TransformTest.trans_world2loc_2d
+[       OK ] TransformTest.trans_world2loc_2d (0 ms)
+[ RUN      ] TransformTest.trans_world2loc_3d
+[       OK ] TransformTest.trans_world2loc_3d (0 ms)
+[ RUN      ] TransformTest.trans_world2loc_2d_rotated
+[       OK ] TransformTest.trans_world2loc_2d_rotated (0 ms)
+[ RUN      ] TransformTest.trans_world2loc_3d_rotated_origin
+[       OK ] TransformTest.trans_world2loc_3d_rotated_origin (0 ms)
+[ RUN      ] TransformTest.trans_world2loc_3d_rotated_general
+[       OK ] TransformTest.trans_world2loc_3d_rotated_general (0 ms)
+[----------] 5 tests from TransformTest (0 ms total)
+
+[----------] 12 tests from PredictionTest
+[ RUN      ] PredictionTest.simple
+[       OK ] PredictionTest.simple (0 ms)
+[ RUN      ] PredictionTest.simple_offAxis
+[       OK ] PredictionTest.simple_offAxis (0 ms)
+[ RUN      ] PredictionTest.simple_offAxis_neg
+[       OK ] PredictionTest.simple_offAxis_neg (0 ms)
+[ RUN      ] PredictionTest.simple_offAxis_both
+[       OK ] PredictionTest.simple_offAxis_both (0 ms)
+[ RUN      ] PredictionTest.simple_offAxis_both_neg
+[       OK ] PredictionTest.simple_offAxis_both_neg (0 ms)
+[ RUN      ] PredictionTest.translated_x
+[       OK ] PredictionTest.translated_x (0 ms)
+[ RUN      ] PredictionTest.translated_y
+[       OK ] PredictionTest.translated_y (0 ms)
+[ RUN      ] PredictionTest.translated_z
+[       OK ] PredictionTest.translated_z (0 ms)
+[ RUN      ] PredictionTest.rotated_z
+[       OK ] PredictionTest.rotated_z (0 ms)
+[ RUN      ] PredictionTest.rotated_z_translated_x
+[       OK ] PredictionTest.rotated_z_translated_x (0 ms)
+[ RUN      ] PredictionTest.rotated_z_translated_y
+[       OK ] PredictionTest.rotated_z_translated_y (0 ms)
+[ RUN      ] PredictionTest.rotated_z_translated_xy
+[       OK ] PredictionTest.rotated_z_translated_xy (0 ms)
+[----------] 12 tests from PredictionTest (0 ms total)
+
+[----------] 10 tests from PredictionInverseTest
+[ RUN      ] PredictionInverseTest.simple
+[       OK ] PredictionInverseTest.simple (0 ms)
+[ RUN      ] PredictionInverseTest.simple_offAxis
+[       OK ] PredictionInverseTest.simple_offAxis (0 ms)
+[ RUN      ] PredictionInverseTest.simple_offAxis_both
+[       OK ] PredictionInverseTest.simple_offAxis_both (0 ms)
+[ RUN      ] PredictionInverseTest.simple_offAxis_both_neg
+[       OK ] PredictionInverseTest.simple_offAxis_both_neg (0 ms)
+[ RUN      ] PredictionInverseTest.translated_x
+[       OK ] PredictionInverseTest.translated_x (0 ms)
+[ RUN      ] PredictionInverseTest.translated_y
+[       OK ] PredictionInverseTest.translated_y (0 ms)
+[ RUN      ] PredictionInverseTest.translated_z
+[       OK ] PredictionInverseTest.translated_z (0 ms)
+[ RUN      ] PredictionInverseTest.rot_trans_1
+[       OK ] PredictionInverseTest.rot_trans_1 (0 ms)
+[ RUN      ] PredictionInverseTest.rot_trans_2
+[       OK ] PredictionInverseTest.rot_trans_2 (0 ms)
+[ RUN      ] PredictionInverseTest.rot_trans_3
+[       OK ] PredictionInverseTest.rot_trans_3 (0 ms)
+[----------] 10 tests from PredictionInverseTest (1 ms total)
+
+[----------] 30 tests from SemiParametricLandmarkTest
+[ RUN      ] SemiParametricLandmarkTest.dimension
+[       OK ] SemiParametricLandmarkTest.dimension (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.create_zero_bearing
+[       OK ] SemiParametricLandmarkTest.create_zero_bearing (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.create_small_1
+[       OK ] SemiParametricLandmarkTest.create_small_1 (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.create_small_2
+[       OK ] SemiParametricLandmarkTest.create_small_2 (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.create_small_3
+[       OK ] SemiParametricLandmarkTest.create_small_3 (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.create_big_1
+[       OK ] SemiParametricLandmarkTest.create_big_1 (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.create_big_2
+[       OK ] SemiParametricLandmarkTest.create_big_2 (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.create_illegal_1
+[       OK ] SemiParametricLandmarkTest.create_illegal_1 (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.retract_zero
+[       OK ] SemiParametricLandmarkTest.retract_zero (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.retract_small_y
+[       OK ] SemiParametricLandmarkTest.retract_small_y (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.retract_small_y_neg
+[       OK ] SemiParametricLandmarkTest.retract_small_y_neg (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.retract_small_x
+[       OK ] SemiParametricLandmarkTest.retract_small_x (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.retract_small_x_neg
+[       OK ] SemiParametricLandmarkTest.retract_small_x_neg (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.retract_small_2d
+[       OK ] SemiParametricLandmarkTest.retract_small_2d (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.retract_big_2d
+[       OK ] SemiParametricLandmarkTest.retract_big_2d (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.retract_big_2d_wrapped
+[       OK ] SemiParametricLandmarkTest.retract_big_2d_wrapped (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.retract_cross_zero
+[       OK ] SemiParametricLandmarkTest.retract_cross_zero (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.retract_illegal_range
+[       OK ] SemiParametricLandmarkTest.retract_illegal_range (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.local_zero
+[       OK ] SemiParametricLandmarkTest.local_zero (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.local_small_psi
+[       OK ] SemiParametricLandmarkTest.local_small_psi (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.local_small_psi_neg
+[       OK ] SemiParametricLandmarkTest.local_small_psi_neg (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.local_small_r
+[       OK ] SemiParametricLandmarkTest.local_small_r (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.local_small_r_neg
+[       OK ] SemiParametricLandmarkTest.local_small_r_neg (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.local_small_both
+[       OK ] SemiParametricLandmarkTest.local_small_both (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.local_bearing_wrap
+[       OK ] SemiParametricLandmarkTest.local_bearing_wrap (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.print
+Bearing: 0 | Range: 1
+[       OK ] SemiParametricLandmarkTest.print (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.equal_1
+[       OK ] SemiParametricLandmarkTest.equal_1 (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.equal_2
+[       OK ] SemiParametricLandmarkTest.equal_2 (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.equal_3
+[       OK ] SemiParametricLandmarkTest.equal_3 (0 ms)
+[ RUN      ] SemiParametricLandmarkTest.equal_4
+[       OK ] SemiParametricLandmarkTest.equal_4 (0 ms)
+[----------] 30 tests from SemiParametricLandmarkTest (0 ms total)
+
+[----------] 1 test from CreateValues
+[ RUN      ] CreateValues.simple
+[       OK ] CreateValues.simple (0 ms)
+[----------] 1 test from CreateValues (0 ms total)
+
+[----------] 6 tests from UnwhitenedError
+[ RUN      ] UnwhitenedError.no_base
+Created LandMark factor with keys
+x0
+l0
+
+[       OK ] UnwhitenedError.no_base (0 ms)
+[ RUN      ] UnwhitenedError.no_landmark
+Created LandMark factor with keys
+x0
+l0
+
+[       OK ] UnwhitenedError.no_landmark (0 ms)
+[ RUN      ] UnwhitenedError.single_meas_equal
+Created LandMark factor with keys
+x0
+l0
+
+Computed unwhitened error without throwing an exception 
+[       OK ] UnwhitenedError.single_meas_equal (0 ms)
+[ RUN      ] UnwhitenedError.single_meas_not_equal
+Created LandMark factor with keys
+x0
+l0
+
+Computed unwhitened error without throwing an exception 
+[       OK ] UnwhitenedError.single_meas_not_equal (0 ms)
+[ RUN      ] UnwhitenedError.two_meas_exact
+Created LandMark factor with keys
+x0
+x1
+l0
+
+Computed unwhitened error without throwing an exception 
+[       OK ] UnwhitenedError.two_meas_exact (0 ms)
+[ RUN      ] UnwhitenedError.two_meas_exact_optimise
+Created LandMark factor with keys
+x0
+x1
+x2
+l0
+
+Computed unwhitened error without throwing an exception 
+Initial valuesValues with 4 values:
+Value l0: (gtsam::SemiParametricLandmark) Bearing: 0.1 | Range: 0.8
+
+Value x0: (gtsam::Pose3) R:
+[
+	1, 0, 0;
+ 	0, 1, 0;
+ 	0, 0, 1
+]
+[0, 0, 0]';
+
+Value x1: (gtsam::Pose3) R:
+[
+	1, 0, 0;
+ 	0, 1, 0;
+ 	0, 0, 1
+]
+[0, -1, 0]';
+
+Value x2: (gtsam::Pose3) R:
+[
+	1, 0, 0;
+ 	0, 1, 0;
+ 	0, 0, 1
+]
+[0, 1, 0]';
+
+Initial error: 12.6393
+Computed unwhitened error without throwing an exception 
+trying lambda = 1e-05
+linear delta norm = 0.246021
+newlinearizedError = 7.29806e-15  linearizedCostChange = 12.6393
+calculating error:
+Computed unwhitened error without throwing an exception 
+old error (12.6393) new (tentative) error (0.852999)
+modelFidelity: 0.932512
+newValuesValues with 4 values:
+Value l0: (gtsam::SemiParametricLandmark) Bearing: 0.0669128 | Range: 0.916197
+
+Value x0: (gtsam::Pose3) R:
+[
+	  0.999664,  0.0259345,          0;
+ 	-0.0259345,   0.999664,          0;
+ 	         0,          0,          1
+]
+[-0.119483, -0.0429691, 0]';
+
+Value x1: (gtsam::Pose3) R:
+[
+	  0.999914, -0.0131304,          0;
+ 	 0.0131304,   0.999914,          0;
+ 	         0,          0,          1
+]
+[-0.0948283, -1.11379, 0]';
+
+Value x2: (gtsam::Pose3) R:
+[
+	   0.999983, -0.00579211,           0;
+ 	 0.00579211,    0.999983,           0;
+ 	          0,           0,           1
+]
+[-0.0511951, 1.06609, 0]';
+
+newError: 0.852999
+errorThreshold: 0.852999 > 0
+absoluteDecrease: 11.7863383397 >= 1e-05
+relativeDecrease: 0.932512388524 >= 1e-05
+Computed unwhitened error without throwing an exception 
+trying lambda = 1e-06
+linear delta norm = 0.0641637470725
+newlinearizedError = 5.00366848026e-18  linearizedCostChange = 0.852998665098
+calculating error:
+Computed unwhitened error without throwing an exception 
+old error (0.852998665098) new (tentative) error (0.0549588202987)
+modelFidelity: 0.93556986365
+newValuesValues with 4 values:
+Value l0: (gtsam::SemiParametricLandmark) Bearing: 0.0598201858367 | Range: 0.947026078088
+
+Value x0: (gtsam::Pose3) R:
+[
+	 0.999475895514,  0.032371813156,               0;
+ 	-0.032371813156,  0.999475895514,               0;
+ 	              0,               0,               1
+]
+[-0.150970449636, -0.0511926324353, 0]';
+
+Value x1: (gtsam::Pose3) R:
+[
+	  0.999886887826, -0.0150403309101,                0;
+ 	 0.0150403309101,   0.999886887826,                0;
+ 	               0,                0,                1
+]
+[-0.119523616277, -1.14242553461, 0]';
+
+Value x2: (gtsam::Pose3) R:
+[
+	   0.999966897967, -0.00813652073815,                 0;
+ 	 0.00813652073815,    0.999966897967,                 0;
+ 	                0,                 0,                 1
+]
+[-0.0647237451148, 1.08591983079, 0]';
+
+newError: 0.0549588202987
+errorThreshold: 0.0549588202987 > 0
+absoluteDecrease: 0.798039844799 >= 1e-05
+relativeDecrease: 0.93556986365 >= 1e-05
+Computed unwhitened error without throwing an exception 
+trying lambda = 1e-07
+linear delta norm = 0.016323210225
+newlinearizedError = 3.25166255522e-21  linearizedCostChange = 0.0549588202987
+calculating error:
+Computed unwhitened error without throwing an exception 
+old error (0.0549588202987) new (tentative) error (0.00352656624946)
+modelFidelity: 0.93583257009
+newValuesValues with 4 values:
+Value l0: (gtsam::SemiParametricLandmark) Bearing: 0.0582255421833 | Range: 0.954931166147
+
+Value x0: (gtsam::Pose3) R:
+[
+	  0.999426234652,  0.0338703629916,                0;
+ 	-0.0338703629916,   0.999426234652,                0;
+ 	               0,                0,                1
+]
+[-0.159020720133, -0.0529913788294, 0]';
+
+Value x1: (gtsam::Pose3) R:
+[
+	  0.999881020381, -0.0154254686172,                0;
+ 	 0.0154254686172,   0.999881020381,                0;
+ 	               0,                0,                1
+]
+[-0.125734374225, -1.14958906987, 0]';
+
+Value x2: (gtsam::Pose3) R:
+[
+	   0.999961870177, -0.00873259367855,                 0;
+ 	 0.00873259367855,    0.999961870177,                 0;
+ 	                0,                 0,                 1
+]
+[-0.0682887603407, 1.09121328266, 0]';
+
+newError: 0.00352656624946
+errorThreshold: 0.00352656624946 > 0
+absoluteDecrease: 0.0514322540493 >= 1e-05
+relativeDecrease: 0.93583257009 >= 1e-05
+Computed unwhitened error without throwing an exception 
+trying lambda = 1e-08
+linear delta norm = 0.00413958155169
+newlinearizedError = 2.09537369358e-24  linearizedCostChange = 0.00352656624946
+calculating error:
+Computed unwhitened error without throwing an exception 
+old error (0.00352656624946) new (tentative) error (0.000226368407459)
+modelFidelity: 0.935810533123
+newValuesValues with 4 values:
+Value l0: (gtsam::SemiParametricLandmark) Bearing: 0.0578461921165 | Range: 0.956942846785
+
+Value x0: (gtsam::Pose3) R:
+[
+	   0.99941398334,  0.0342299562318,                0;
+ 	-0.0342299562318,    0.99941398334,                0;
+ 	               0,                0,                1
+]
+[-0.161066772354, -0.0534177290908, 0]';
+
+Value x1: (gtsam::Pose3) R:
+[
+	  0.999879639173, -0.0155147402957,                0;
+ 	 0.0155147402957,   0.999879639173,                0;
+ 	               0,                0,                1
+]
+[-0.127297783868, -1.15139253555, 0]';
+
+Value x2: (gtsam::Pose3) R:
+[
+	   0.999960586326, -0.00887838916604,                 0;
+ 	 0.00887838916604,    0.999960586326,                 0;
+ 	                0,                 0,                 1
+]
+[-0.0692124008803, 1.09258029727, 0]';
+
+newError: 0.000226368407459
+errorThreshold: 0.000226368407459 > 0
+absoluteDecrease: 0.00330019784201 >= 1e-05
+relativeDecrease: 0.935810533123 >= 1e-05
+Computed unwhitened error without throwing an exception 
+trying lambda = 1e-09
+linear delta norm = 0.00104939656679
+newlinearizedError = 1.34795162321e-27  linearizedCostChange = 0.000226368407459
+calculating error:
+Computed unwhitened error without throwing an exception 
+old error (0.000226368407459) new (tentative) error (1.45404436193e-05)
+modelFidelity: 0.935766462367
+newValuesValues with 4 values:
+Value l0: (gtsam::SemiParametricLandmark) Bearing: 0.0577531545637 | Range: 0.957453634616
+
+Value x0: (gtsam::Pose3) R:
+[
+	  0.999410952045,  0.0343183468645,                0;
+ 	-0.0343183468645,   0.999410952045,                0;
+ 	               0,                0,                1
+]
+[-0.161585997822, -0.0535224072174, 0]';
+
+Value x1: (gtsam::Pose3) R:
+[
+	  0.999879301293, -0.0155365004456,                0;
+ 	 0.0155365004456,   0.999879301293,                0;
+ 	               0,                0,                1
+]
+[-0.127692475718, -1.15184818734, 0]';
+
+Value x2: (gtsam::Pose3) R:
+[
+	   0.999960266072, -0.00891438598571,                 0;
+ 	 0.00891438598571,    0.999960266072,                 0;
+ 	                0,                 0,                 1
+]
+[-0.0694492866976, 1.09292960183, 0]';
+
+newError: 1.45404436193e-05
+errorThreshold: 1.45404436193e-05 > 0
+absoluteDecrease: 0.000211827963839 >= 1e-05
+relativeDecrease: 0.935766462367 >= 1e-05
+Computed unwhitened error without throwing an exception 
+trying lambda = 1e-10
+linear delta norm = 0.000266041055891
+newlinearizedError = 8.67601713164e-31  linearizedCostChange = 1.45404436193e-05
+calculating error:
+Computed unwhitened error without throwing an exception 
+old error (1.45404436193e-05) new (tentative) error (9.35008230737e-07)
+modelFidelity: 0.935696031344
+newValuesValues with 4 values:
+Value l0: (gtsam::SemiParametricLandmark) Bearing: 0.0577299676729 | Range: 0.957583203401
+
+Value x0: (gtsam::Pose3) R:
+[
+	0.999410195171,  0.03434038131,              0;
+ 	-0.03434038131, 0.999410195171,              0;
+ 	             0,              0,              1
+]
+[-0.161717703179, -0.0535485268735, 0]';
+
+Value x1: (gtsam::Pose3) R:
+[
+	  0.999879217122, -0.0155419164502,                0;
+ 	 0.0155419164502,   0.999879217122,                0;
+ 	               0,                0,                1
+]
+[-0.12779226636, -1.15196357452, 0]';
+
+Value x2: (gtsam::Pose3) R:
+[
+	   0.999960185974, -0.00892336637315,                 0;
+ 	 0.00892336637315,    0.999960185974,                 0;
+ 	                0,                 0,                 1
+]
+[-0.0695096468427, 1.09301855014, 0]';
+
+newError: 9.35008230737e-07
+errorThreshold: 9.35008230737e-07 > 0
+absoluteDecrease: 1.36054353886e-05 >= 1e-05
+relativeDecrease: 0.935696031344 >= 1e-05
+Computed unwhitened error without throwing an exception 
+trying lambda = 1e-11
+linear delta norm = 6.74741014832e-05
+newlinearizedError = 5.54726896248e-34  linearizedCostChange = 9.35008230737e-07
+calculating error:
+Computed unwhitened error without throwing an exception 
+old error (9.35008230737e-07) new (tentative) error (5.8056924713e-08)
+modelFidelity: 0.937907578988
+newValuesValues with 4 values:
+Value l0: (gtsam::SemiParametricLandmark) Bearing: 0.0577241425766 | Range: 0.957616199933
+
+Value x0: (gtsam::Pose3) R:
+[
+	  0.999410004897,  0.0343459184269,                0;
+ 	-0.0343459184269,   0.999410004897,                0;
+ 	               0,                0,                1
+]
+[-0.16175090856, -0.0535551390758, 0]';
+
+Value x1: (gtsam::Pose3) R:
+[
+	  0.999879195859, -0.0155432843456,                0;
+ 	 0.0155432843456,   0.999879195859,                0;
+ 	               0,                0,                1
+]
+[-0.127817542978, -1.15199285334, 0]';
+
+Value x2: (gtsam::Pose3) R:
+[
+	   0.999960166057, -0.00892559797053,                 0;
+ 	 0.00892559797053,    0.999960166057,                 0;
+ 	                0,                 0,                 1
+]
+[-0.0695249652421, 1.093041252, 0]';
+
+newError: 5.8056924713e-08
+errorThreshold: 5.8056924713e-08 > 0
+absoluteDecrease: 8.76951306024e-07 < 1e-05
+relativeDecrease: 0.937907578988 >= 1e-05
+converged
+errorThreshold: 5.8056924713e-08 <? 0
+absoluteDecrease: 8.76951306024e-07 <? 1e-05
+relativeDecrease: 0.937907578988 <? 1e-05
+iterations: 7 >? 100
+Computed unwhitened error without throwing an exception 
+unknown file: Failure
+C++ exception with description "
+Indeterminant linear system detected while working near variable
+7782220156096217088 (Symbol: l0).
+
+Thrown when a linear system is ill-posed.  The most common cause for this
+error is having underconstrained variables.  Mathematically, the system is
+underdetermined.  See the GTSAM Doxygen documentation at
+http://borg.cc.gatech.edu/ on gtsam::IndeterminantLinearSystemException for
+more information." thrown in the test body.
+[  FAILED  ] UnwhitenedError.two_meas_exact_optimise (2 ms)
+[----------] 6 tests from UnwhitenedError (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 67 tests from 7 test cases ran. (3 ms total)
+[  PASSED  ] 66 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] UnwhitenedError.two_meas_exact_optimise
+
+ 1 FAILED TEST
