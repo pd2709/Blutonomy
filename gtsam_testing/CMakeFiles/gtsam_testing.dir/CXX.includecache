@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/thales/matt_thesis/gtsam_testing/3DLandmarkTrial.cpp
+gtsam/geometry/Pose2.h
+-
+gtsam/geometry/Point2.h
+-
+gtsam/inference/Symbol.h
+-
+gtsam/slam/BetweenFactor.h
+-
+gtsam/sam/BearingRangeFactor.h
+-
+gtsam/nonlinear/NonlinearFactorGraph.h
+-
+gtsam/nonlinear/LevenbergMarquardtOptimizer.h
+-
+gtsam/nonlinear/Marginals.h
+-
+gtsam/nonlinear/Values.h
+-
+gtsam/geometry/Rot3.h
+-
+gtsam/geometry/Pose3.h
+-
+
