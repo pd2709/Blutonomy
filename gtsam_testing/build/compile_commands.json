@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/thales/matt_thesis/gtsam_testing/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-5   -isystem /usr/include/gtsam/3rdparty/metis -isystem /usr/include/gtsam/3rdparty/SuiteSparse_config -isystem /usr/include/gtsam/3rdparty/CCOLAMD -isystem /usr/include/eigen3  -g   -std=gnu++11 -o CMakeFiles/runTests.dir/test/tests.cpp.o -c /home/thales/matt_thesis/gtsam_testing/test/tests.cpp",
+  "file": "/home/thales/matt_thesis/gtsam_testing/test/tests.cpp"
+},
+{
+  "directory": "/home/thales/matt_thesis/gtsam_testing/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-5   -isystem /usr/include/gtsam/3rdparty/metis -isystem /usr/include/gtsam/3rdparty/SuiteSparse_config -isystem /usr/include/gtsam/3rdparty/CCOLAMD -isystem /usr/include/eigen3  -g   -std=gnu++11 -o CMakeFiles/runTests.dir/GeometricTransforms.cpp.o -c /home/thales/matt_thesis/gtsam_testing/GeometricTransforms.cpp",
+  "file": "/home/thales/matt_thesis/gtsam_testing/GeometricTransforms.cpp"
+},
+{
+  "directory": "/home/thales/matt_thesis/gtsam_testing/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-5   -isystem /usr/include/gtsam/3rdparty/metis -isystem /usr/include/gtsam/3rdparty/SuiteSparse_config -isystem /usr/include/gtsam/3rdparty/CCOLAMD -isystem /usr/include/eigen3  -g   -std=gnu++11 -o CMakeFiles/gtsam_testing.dir/3DLandmarkTrial.cpp.o -c /home/thales/matt_thesis/gtsam_testing/3DLandmarkTrial.cpp",
+  "file": "/home/thales/matt_thesis/gtsam_testing/3DLandmarkTrial.cpp"
+}
+]
