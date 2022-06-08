@@ -1,0 +1,54 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/cmeci_admin/cmake_ws/blueprint_subsea_oculus_driver/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_f91c3/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f91c3.dir/build.make CMakeFiles/cmTC_f91c3.dir/build
+make[1]: Entering directory '/home/cmeci_admin/cmake_ws/blueprint_subsea_oculus_driver/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_f91c3.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++    -O2 -pipe -march=native -mtune=native -fno-omit-frame-pointer -fsanitize=address -fstack-protector-all -ftree-loop-distribution -ftree-vectorize -ftree-vectorizer-verbose=2 -funroll-loops -pedantic -Wall -Wcast-align -Wcast-qual -Wconversion -Wctor-dtor-privacy -Wdisabled-optimization -Wdouble-promotion -Werror -Wextra -Wfloat-equal -Wformat=2 -Winit-self -Wlogical-op -Wmissing-braces -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wno-implicit-fallthrough -Wold-style-cast -Woverloaded-virtual -Wparentheses -Wredundant-decls -Wreorder -Wshadow -Wsign-conversion -Wsign-promo -Wstrict-aliasing=3 -Wstrict-null-sentinel -Wstrict-overflow=2 -Wswitch-default -Wundef -Wunreachable-code -Wunused -Wuseless-cast    -std=c++14 -o CMakeFiles/cmTC_f91c3.dir/CheckSymbolExists.cxx.o -c /home/cmeci_admin/cmake_ws/blueprint_subsea_oculus_driver/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/cmeci_admin/cmake_ws/blueprint_subsea_oculus_driver/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/cmeci_admin/cmake_ws/blueprint_subsea_oculus_driver/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:33: error: use of old-style cast [-Werror=old-style-cast]
+   return ((int*)(&pthread_create))[argc];
+                                 ^
+cc1plus: all warnings being treated as errors
+CMakeFiles/cmTC_f91c3.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_f91c3.dir/CheckSymbolExists.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_f91c3.dir/CheckSymbolExists.cxx.o] Error 1
+make[1]: Leaving directory '/home/cmeci_admin/cmake_ws/blueprint_subsea_oculus_driver/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_f91c3/fast' failed
+make: *** [cmTC_f91c3/fast] Error 2
+
+File /home/cmeci_admin/cmake_ws/blueprint_subsea_oculus_driver/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/cmeci_admin/cmake_ws/blueprint_subsea_oculus_driver/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_b4584/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b4584.dir/build.make CMakeFiles/cmTC_b4584.dir/build
+make[1]: Entering directory '/home/cmeci_admin/cmake_ws/blueprint_subsea_oculus_driver/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_b4584.dir/CheckFunctionExists.cxx.o
+/usr/bin/c++    -O2 -pipe -march=native -mtune=native -fno-omit-frame-pointer -fsanitize=address -fstack-protector-all -ftree-loop-distribution -ftree-vectorize -ftree-vectorizer-verbose=2 -funroll-loops -pedantic -Wall -Wcast-align -Wcast-qual -Wconversion -Wctor-dtor-privacy -Wdisabled-optimization -Wdouble-promotion -Werror -Wextra -Wfloat-equal -Wformat=2 -Winit-self -Wlogical-op -Wmissing-braces -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wno-implicit-fallthrough -Wold-style-cast -Woverloaded-virtual -Wparentheses -Wredundant-decls -Wreorder -Wshadow -Wsign-conversion -Wsign-promo -Wstrict-aliasing=3 -Wstrict-null-sentinel -Wstrict-overflow=2 -Wswitch-default -Wundef -Wunreachable-code -Wunused -Wuseless-cast -DCHECK_FUNCTION_EXISTS=pthread_create   -std=c++14 -o CMakeFiles/cmTC_b4584.dir/CheckFunctionExists.cxx.o -c /home/cmeci_admin/cmake_ws/blueprint_subsea_oculus_driver/build/CMakeFiles/CheckLibraryExists/CheckFunctionExists.cxx
+Linking CXX executable cmTC_b4584
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b4584.dir/link.txt --verbose=1
+/usr/bin/c++  -O2 -pipe -march=native -mtune=native -fno-omit-frame-pointer -fsanitize=address -fstack-protector-all -ftree-loop-distribution -ftree-vectorize -ftree-vectorizer-verbose=2 -funroll-loops -pedantic -Wall -Wcast-align -Wcast-qual -Wconversion -Wctor-dtor-privacy -Wdisabled-optimization -Wdouble-promotion -Werror -Wextra -Wfloat-equal -Wformat=2 -Winit-self -Wlogical-op -Wmissing-braces -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wno-implicit-fallthrough -Wold-style-cast -Woverloaded-virtual -Wparentheses -Wredundant-decls -Wreorder -Wshadow -Wsign-conversion -Wsign-promo -Wstrict-aliasing=3 -Wstrict-null-sentinel -Wstrict-overflow=2 -Wswitch-default -Wundef -Wunreachable-code -Wunused -Wuseless-cast -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_b4584.dir/CheckFunctionExists.cxx.o  -o cmTC_b4584 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_b4584.dir/build.make:97: recipe for target 'cmTC_b4584' failed
+make[1]: *** [cmTC_b4584] Error 1
+make[1]: Leaving directory '/home/cmeci_admin/cmake_ws/blueprint_subsea_oculus_driver/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_b4584/fast' failed
+make: *** [cmTC_b4584/fast] Error 2
+
+
