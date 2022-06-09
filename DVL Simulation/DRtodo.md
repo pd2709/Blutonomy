@@ -71,3 +71,6 @@ https://mdpi-res.com/d_attachment/sensors/sensors-11-09182/article_deploy/sensor
       type: ''
       status: False
       format: ''
+
+![image](https://user-images.githubusercontent.com/85168871/172784269-e2572f87-3b84-4f40-a077-2b55ca1c06bc.png)
+  
