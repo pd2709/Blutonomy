@@ -1,0 +1,6 @@
+Header header
+geometry_msgs/PoseWithCovarianceStamped var_X
+geometry_msgs/PoseWithCovarianceStamped[] var_L
+geometry_msgs/Point var_V
+geometry_msgs/Point var_B_acc
+geometry_msgs/Point var_B_gyr
