@@ -334,46 +334,6 @@ rostopic info
 	linear_acceleration_covariance: [1.6e-05, 0.0, 0.0, 0.0, 1.6e-05, 0.0, 0.0, 0.0, 1.6e-05]
 
 
-# 24/05/2022
-- looked into libraries and researched gtsam, isam2.
-	https://github.com/haidai/gtsam/blob/master/examples/ImuFactorsExample.cpp
-	https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7913909/
-- dive into the cpp files for SLAM code.
-- Looked at code structure, imucallback.
-- imu and dvl messages compared (to see if we can swap and place)
-- Navigate to MattD_SLAM_code/ folder to see commands.
-- difference between experimental (real life) and simulation (gazebo) launch: 
-experimental - mavros
-![image](https://user-images.githubusercontent.com/88146518/170012183-3e95fa19-72ed-4b49-b199-a5eb33dd782e.png)
-slam - bluerov2
-![image](https://user-images.githubusercontent.com/88146518/170012518-cd957654-ad74-494b-8f19-0e17a54149f4.png)
-
-
-## 31/05/2022 IMU & DVL Integration further research
-
-The IMU orientation is usually obtained by integrating the angular velocity measured with the gyroscope.
-This allows for immediate detection of orientation changes but leads to a drift of the estimated orientation over time, e.g., due to gyroscope bias 
-
-In the case of simple dead-reckoning navigation, some corrections were applied as follows.
-The DVL velocity was smoothed with IMU acceleration using a Kalman filter (KF), and the
-IMU directional accuracy was improved by dynamic zero velocity update (DZUPT). We
-estimated the bias of the yaw rate of the IMU as accurately as possible before the start of
-the GNSS outage. In addition, we considered the slip angle by using the yaw rate angle.
-
-https://answers.ros.org/question/209304/imu-drift-causing-robot-to-drift-in-rviz/
-Improvement on an Inertial-Doppler Navigation System of Underwater Vehicles Using a Complementary Range Sonar:
-https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=1405508
-
-loop closure- slam
-Notes from Gibbson:
-- AHRS- track rotation very accurately - combine with linear velocity and the altitude will give you the height from DVL -> thats how we can get dead-reckoning 
-- To do SLAM we need to observe using sonar, not just with imu and dvl.
-
-feature based slam-> then apply optimisation algorithm leasst squares
-out of the bos- g2o(graph based slam) -> turn data into usable 
-start with matlab 
-figure out mbs data
-
 ## Code Research  
 Quaternion to RPY: https://gist.github.com/marcoarruda/f931232fe3490b7fa20dbb38da1195ac  
 
