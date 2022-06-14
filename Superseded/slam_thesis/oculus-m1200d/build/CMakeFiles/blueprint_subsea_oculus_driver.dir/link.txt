@@ -1,0 +1,2 @@
+/usr/bin/ar qc libblueprint_subsea_oculus_driver.a  CMakeFiles/blueprint_subsea_oculus_driver.dir/src/OculusDriver.cpp.o
+/usr/bin/ranlib libblueprint_subsea_oculus_driver.a
