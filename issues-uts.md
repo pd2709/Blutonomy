@@ -136,3 +136,9 @@ source devel_isolated/setup.bash
   
 # Low Disk Space on Filesystem root  
 ![image](https://user-images.githubusercontent.com/85168871/172077211-0dff1030-2844-4868-936b-9b6fceea4891.png)  
+
+# Issues with QGroundControl Testing 
+  
+During testing on the 12/4/2022, the team operated BlueROV2 in Ubuntu and had difficulties with control. We realised that we had to configure the controller settings for QGroundContol in which we copied the same layout as shown on the Pre-Dive Checklist.
+
+https://discuss.bluerobotics.com/t/issue-with-stabilize-and-depth-hold-flight-modes/861/2
