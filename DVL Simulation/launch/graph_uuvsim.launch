@@ -1,0 +1,42 @@
+<!-- Launch factor graph optimisation node for UUV Simulator (simulated) data -->
+<launch>
+
+    <!-- Put IMU on correct topic -->
+    <remap from="/slam/imu/data" to="/bluerov2/imu"/>
+
+    <!-- Currently bluerov2/dvl but can be altered for remapping below -->
+    <!-- Put DVL on correct topic -->
+    <!--- <remap from="/bluerov2/dvl" to="/bluerov2/dvl"/>
+
+    <!-- Start RViz visualisation -->
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find slam)/rviz/bluerov2_simulated.rviz" />
+
+    <!-- Start the SLAM trajectory estimate -->
+    <node name="graph" pkg="slam" type="graph" respawn="false" output = "screen">
+
+        <param name = "publish_frame" type = "string" value = "world" /> <!-- publish result in this frame -->
+
+        <param name = "imu_period" type = "double" value = "0.02" /> <!-- IMU period in seconds -->
+
+        <!-- IMU parameters from uuv sim imu_snippets.xacro
+        -->
+        <param name = "accel_noise_sigma" type = "double" value = "0.004" /> <!-- m s^-2 Hz^-0.5 -->
+        <param name = "gyro_noise_sigma" type = "double" value = "0.0004" /> <!-- rad s^-1 Hz^-0.5 was 0.0004 -->
+        <param name = "accel_bias_rw_sigma" type = "double" value = "0.006" /> <!-- m s^-3 Hz^-0.5 -->
+        <param name = "gyro_bias_rw_sigma" type = "double" value = "0.000038785" /> <!-- rad s^-2 Hz^-0.5 was 0.000038-->
+
+        <param name = "landmark_noise_elev" type = "double" value = "0.1" />    <!-- rad (was 0.01 before) -->
+        <param name = "landmark_noise_bear" type = "double" value = "0.1" />    <!-- rad  (was 0.01 before)--> 
+        <param name = "landmark_noise_range" type = "double" value = "0.1" />   <!-- m (was 0.2 before) -->
+
+        <param name = "g" type = "double" value = "9.8" /> <!-- m/s^2 -->
+
+        <rosparam param = "sonar_translation">[0, 0, -0.4]</rosparam> <!-- x y z -->
+        <rosparam param = "sonar_rotation">[0.991, 0, 0.131, 0]</rosparam> <!-- w x y z -->
+
+        <param name = "should_use_jcbb" type = "bool" value = "false" />            <!-- True for JCBB, else use CP -->
+        <param name = "should_use_depth_factors" type = "bool" value = "true" />    <!-- True for depth factors, else omit -->
+
+
+    </node>
+</launch>
