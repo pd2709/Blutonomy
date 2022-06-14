@@ -1,32 +1,34 @@
 # DVL Integration
+
+## Initial Research
 - https://uuvsimulator.github.io/packages/uuv_simulator/docs/api/gazebo::DVLROSPlugin/
 - https://github-wiki-see.page/m/Field-Robotics-Lab/dave/wiki/whn_dvl_examples
 - https://answers.gazebosim.org//question/13966/examples-of-registering-a-custom-sensor-not-plugin/#17653
 - https://answers.gazebosim.org//question/20324/unable-to-create-sensor-of-type/
 - https://github.com/Field-Robotics-Lab/dave/wiki/dvl_description
 - https://github.com/Field-Robotics-Lab/dave/wiki/Notes
-- 
-## A50 - WaterLink
+
+
+### DVL A50 - WaterLink
 https://store.waterlinked.com/product/dvl-a50/  
-Transducer setup 	: 4-beam convex Janus array   
+Transducer setup : 4-beam convex Janus array   
   
-# Exploring Matt's Simulation
-  
+### Exploring Matt's Simulation
 ![image](https://user-images.githubusercontent.com/85168871/166186423-68b4d3c3-4b3b-4755-ba9e-9c35738e18ef.png)  
 Note: DVLROSPlugin() exists in this workspace 
 
-## How To Open an Image  
+### How To Open an Image  
 ![image](https://user-images.githubusercontent.com/85168871/166187026-c0fae98d-e88c-4204-b45c-3b7e7d2df766.png)  
 Note: `eog` command can be used to view an image in terminal
 
-## Exploring URDF
+### Exploring URDF
 Our tutor Richardo reccomended us to start with looking at the 'URDF'. Matt's documentation reccomends us to add a sonar plugin to the BlueROV2 model by adding particular text to the sensors.xacro file of the BlueROV2 package.  
-(Insert image of Matt's repo)  
-  
+
 Disclaimer: Team SPR does not have access to this repository and will not be given access due to the complexity and time delay of gaining access in the Thales system.  
   
 Here is the location of the sensors.xacro file:  
 ![image](https://user-images.githubusercontent.com/85168871/166187496-9ca050ac-b40c-4bb8-ad58-ab42b51353e8.png)  
+
 Sources:
 Build a Custom Robot in ROS | URDF | ROS Tutorial for Beginners: https://www.youtube.com/watch?v=JFpg7vG8NXE  
 How do we describe a robot? With URDF! | Getting Ready to build Robots with ROS #7 https://www.youtube.com/watch?v=CwdbsvcpOHM  
@@ -36,117 +38,14 @@ What is included in the urdf: colours, material and links (think of Denavit-Hart
 ## Xacro  
 ![image](https://user-images.githubusercontent.com/85168871/166198932-bc03f6e3-8ef1-4c24-b512-9290727cc20b.png)  
   
-### sensors.xacro
-  <!-- Mount DVL -->
-  <!--fov="1.22173"-->
-  <!--width="512"-->
-  <!--height="400"-->
-  
-	  <xacro:forward_looking_sonar
-	      namespace="${namespace}"
-	      suffix=""
-	      parent_link="${namespace}/base_link"
-	      topic="fls_sonar"
-	      mass="0.00001"
-	      update_rate="5"
-	      samples="512"
-	      fov="0.8726"
-	      width="512"
-	      height="115" >
-	      <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001" />
-	      <origin xyz="0 0 -0.4" rpy="0 0.261799 0" />
-	  </xacro:forward_looking_sonar>
 
-### Splugins sonar_snippet.xacro
-
-	  <xacro:macro name="forward_looking_sonar" params="namespace suffix parent_link topic mass update_rate samples fov width height *inertia *origin">
-	    <!-- Sensor link -->
-	    <link name="${namespace}/forward_sonar${suffix}_link">
-	      <inertial>
-		<xacro:insert_block name="inertia" />
-		<mass value="${mass}" />
-		<origin xyz="0 0 0" rpy="0 0 0" />
-	      </inertial>
-	      <visual>
-		<geometry>
-		  <mesh filename="file://$(find uuv_sensor_ros_plugins)/meshes/oe14-372.dae" scale="1 1 1"/>
-		</geometry>
-	      </visual>
-	      <xacro:no_collision/>
-	    </link>
-
-	    <joint name="${namespace}_forward_sonar${suffix}_joint" type="revolute">
-	      <xacro:insert_block name="origin" />
-	      <parent link="${parent_link}" />
-	      <child link="${namespace}/forward_sonar${suffix}_link" />
-	      <limit upper="0" lower="0" effort="0" velocity="0" />
-	      <axis xyz="1 0 0"/>
-	    </joint>
-
-
-	    <gazebo reference="${namespace}/forward_sonar${suffix}_link">
-	      <sensor name="${namespace}/image_sonar" type="depth">
-		<camera>
-			  <horizontal_fov>${fov}</horizontal_fov>
-		  <image>
-			    <width>${width}</width>
-			    <height>${height}</height>
-		    <format>R8G8B8</format>
-		  </image>
-		  <clip>
-		    <near>0.1</near>
-		    <far>17</far>
-		  </clip>
-		  <save enabled="true">
-		    <path>/tmp/camera</path>
-		  </save>
-		</camera>
-		    <plugin filename="libimage_sonar_ros_plugin.so" name="forward_sonar${suffix}_controller">
-			  <topicName>${topic}</topicName>
-		  <frameName>forward_sonar${suffix}_optical_frame</frameName>
-		</plugin>
-		<always_on>true</always_on>
-		    <update_rate>${update_rate}</update_rate>
-	      </sensor>
-	    </gazebo>
-
-		<joint name="${namespace}/forward_sonar${suffix}_joint" type="fixed">
-	      <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
-	      <parent link="${namespace}/forward_sonar${suffix}_link"/>
-	      <child link="${namespace}/forward_sonar${suffix}_optical_frame"/>
-	    </joint>
-
-		<link name="${namespace}/forward_sonar${suffix}_optical_frame"/>
-	  </xacro:macro>
   
 ### Current Error
 	[ERROR]: Mesh scale was specified, but could not be parsed: Parser found 0 elements but 3 expected while parsing vector [  ]
 	[ERROR]: Could not parse visual element for Link [bluerov2/dvl_link]
 	[ERROR]: Failed to build tree: parent link [bluerov2/baselink] of joint [bluerov2/dvl_joint] not found.  This is not valid according to the URDF spec. Every link you refer to from a joint needs to be explicitly defined in the robot description. To fix this problem you can either remove this joint [bluerov2/dvl_joint] from your urdf file, or add "<link name="bluerov2/baselink" />" to your urdf file.
-
-### DVL Xacro Macros
-
-NOT WORKING!!! (GOOD IF WE WANT TO SCALE THE DVL -> BUT WHAT IS SCALED? THE MESH?)
-
-	  <xacro:dvl_plugin_macro 
-	      namespace="${namespace}"
-	      parent_link="${namespace}/base_link" 
-	      topic="dvl_sonar"
-	      scale=""
-	      update_rate="5"
-	      reference_frame=""
-	      noise_sigma=""
-	      noise_amplitude="" >
-	      <origin xyz="0 0 0" rpy="0 0 0" />
-	  </xacro:dvl_plugin_macro>
-  
-  WORKING!!! (ALSO DEPRECATED)
-  
-	  <xacro:default_dvl namespace="${namespace}" parent_link="${namespace}/base_link">
-	      <origin xyz="0 0 0" rpy="0 0 0" />
-	  </xacro:default_dvl >
     
-# Further Notes
+## Further Notes
 
 Wiki on xacro:
 https://wiki.ros.org/xacro 
@@ -169,7 +68,7 @@ Add the following lines to 'sensors.xacro' to add dvl sensor:
 How to - Gazebo tutorials for sensors:
 https://classic.gazebosim.org/tutorials?cat=sensors 
 
-# Integration Progress Snapshots
+## Integration Progress Snapshots
 Terminal showing `catkin_make_isolated` has run successfully as well as the launch file.
 ![Terminal](https://user-images.githubusercontent.com/88146518/169041620-3b5f74cd-0a7d-4434-ab20-de668446fb02.png)
 
@@ -205,7 +104,7 @@ rostopic info
 ![image](https://user-images.githubusercontent.com/88146518/169043400-7570d3f8-4cca-45e7-ba26-d51e54116d7e.png)
 
 
-# Rostopic List (18/05/2022)
+### Rostopic List (18/05/2022)
 	/bluerov2/automatic_on
 	/bluerov2/camera_info
 	/bluerov2/cmd_vel
@@ -307,7 +206,7 @@ rostopic info
 	/tf
 	/tf_static
 
-# Rostopic echo /bluerov2/dvl  
+### Rostopic echo /bluerov2/dvl  
     header:  
       seq: 746   
       stamp:   
@@ -435,12 +334,6 @@ rostopic info
 	linear_acceleration_covariance: [1.6e-05, 0.0, 0.0, 0.0, 1.6e-05, 0.0, 0.0, 0.0, 1.6e-05]
 
 
-
-### Next
-- have a look at scaling (does it scale the visual model?) and adding parameters
-- what does deprecated really mean?
-- Terminal output of dvl data from simulation
-
 # 24/05/2022
 - looked into libraries and researched gtsam, isam2.
 	https://github.com/haidai/gtsam/blob/master/examples/ImuFactorsExample.cpp
@@ -454,23 +347,6 @@ experimental - mavros
 ![image](https://user-images.githubusercontent.com/88146518/170012183-3e95fa19-72ed-4b49-b199-a5eb33dd782e.png)
 slam - bluerov2
 ![image](https://user-images.githubusercontent.com/88146518/170012518-cd957654-ad74-494b-8f19-0e17a54149f4.png)
-do we need to remap?
-what is range for?
-
-### Planned Approach to integrate DVL
-- remapping the link between toics
-- simple subscriber to slam/dvl/data
-- create dvlcallback
-- get velocity, get time, calculate acceleration, calculate displacement (refer to: https://github.com/print-Eruki/integration-task/blob/main/src/displacement_integration.py)
-- generate data
-- attempt to compare acceleration measured using imu and calculated acceleration using dvl velocity and time. 
-- does Matt's AKAZE algorithm record location?
-- look into cones placed in simulation - what is publishing the interactive markers, if its placed by gazebo
-
-## missing topic from rostopic list command
-![image](https://user-images.githubusercontent.com/88146518/170007969-52e3881d-c20f-423d-80e8-ce9a763ce72b.png)
-![image](https://user-images.githubusercontent.com/88146518/170007989-89a5d798-b8ef-4f90-b933-631abb9933d0.png)
-![image](https://user-images.githubusercontent.com/88146518/170008010-e55f8d1a-2cfb-48f8-b728-bd5b77ab8ad9.png)
 
 
 ## 31/05/2022 IMU & DVL Integration further research
@@ -551,31 +427,27 @@ rostopic echo /deadReckoning:
 	format: ''
 	---
 			
-# Extended Kalman Filter  
+## Extended Kalman Filter  
 
-## Lighter reading
+### Lighter reading
 Generic Kalman Filter: https://openimu.readthedocs.io/en/latest/algorithms/KalmanFilter.html  
 
-## Deeper reading
+### Deeper reading
 https://robotics.stackexchange.com/questions/964/extended-kalman-filter-using-odometry-motion-model  
 https://mdpi-res.com/d_attachment/sensors/sensors-11-09182/article_deploy/sensors-11-09182.pdf?version=1403316184  
 
-# AHRS   
+## AHRS   
 
-## Lighter reading  
-
-## Deeper reading  
+### Readings  
 AHRS Code cpp: https://github.com/emlid/Navio/blob/master/C%2B%2B/Examples/AHRS/AHRS.cpp    
 AHRS Code hpp: https://github.com/emlid/Navio/blob/master/C%2B%2B/Examples/AHRS/AHRS.hpp  
 
-# Example SLAM Code  
+## Example SLAM Code  
 https://github.com/WaldumA/sonar_slam/blob/c638b6ecf00101b16d9ff62a97267ca29e6ef083/src/sonar_slam.cpp   
 https://github.com/MohamedMehery/Localization-package-AUV/blob/84fba624f7ad61e58475d19d512ba1aeeec0d119/navigation/underwater_odom/src/underwater_odom_node.cpp   
 https://github.com/luansilveira/dolphin_slam/blob/e58680a48fdd9f23b98b733f0a654e8a945cf5de/src/dolphin_slam/robot_state.cpp   
 
-**Check and confirm:**
-- Moving forward/backward
-- Moving left/right
+## Ground Truth 
 
 /ground_truth_to_tf_bluerov2/pose
 
