@@ -1,7 +1,7 @@
 # Commands for Simulation
 
 ## Recording simulated data:
-On the Blutonomy Laptop:
+On the Blutonomy Laptop for **every new terminal**:
 
     cd ~/matt_thesis/catkin_ws
     source devel_isolated/setup.bash
