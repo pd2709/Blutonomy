@@ -1,51 +1,48 @@
-// This node gets odometry (IMU data (orientation) and DVL data (altitude and linear velocity)) to set the pose of the BlueROV2 UUV
-
-// Kalman filter can be used with the IMU, DVL and a third sensor (like a GNSS) optimise the value
-// TODO: Object Association 
-
-
-//! Headers
-// Headers make initialisation of objects from specialised classes shorter and easier
+/**
+ * Node Description: Gets odometry (IMU data (orientation) and DVL data (altitude and linear velocity)) to set the pose of the BlueROV2 UUV
+ * 
+ * @author Melody Hood
+ * @author Pooja Darji
+ * @note sanity check cout messaged to terminal are striked out with ////
+ */
 
 #include "../include/slam/graph.hpp"            // Allows for SLAM related operations (refer to graph.cpp and Graph based SLAM)
-
-#include <ros/ros.h>                       
+#include <ros/ros.h>                            
 #include "gtsam/geometry/concepts.h"            // SLAM specialist library
-// #include <tf2.h>
 #include "tf/transform_datatypes.h"
 #include <tf/tf.h> 
-// #include "LinearMath/btMatrix3x3.h"
+#include <math.h>
 #include <vector>
 #include <string>
-
 #include "slam/deadReckoning.h"                 // Rosmsg formats
 #include "slam/DVL.h"                           // Allows for the use of DVL rosmsg format [not standard]
 #include <sensor_msgs/Imu.h>                    // Allows for the use of IMU rosmsg format [from standard library sensor_msgs]
 
-// Pointcloud library is used for landmarks
-#include <pcl_ros/point_cloud.h>
-#include <pcl/point_types.h>
-#include <pcl_conversions/pcl_conversions.h>
-#include <sensor_msgs/PointCloud2.h>
-
-//! Global Variables
-// Updated when deadReckoning is published
-tf::Pose prevPose; 
-tf::Pose newPose;
-ros::Time newTime;
-ros::Time previousTime;
-bool deadReckon = 0; // Toggle to publish deadReckoning msg
-
-// Temporary Storage
-tf::Quaternion orientation; 
-vector<double> angularVelocity;
-vector<double> linearVelocity;
-double altitude;
+// Global Variables
+tf::Pose prevPose;                              // Updated when deadReckoning is published
+tf::Pose newPose;                               // Updated when deadReckoning is published
+ros::Time newTime;                              // Updated when deadReckoning is published
+ros::Time previousTime;                         // Updated when deadReckoning is published
+bool deadReckon = 0;                            // Toggle to publish deadReckoning rosmsg
+tf::Quaternion orientation;                     // Temporary Storage
+vector<double> angularVelocity;                 // Temporary Storage
+geometry_msgs::Vector3 angVel;                  // Temporary Storage
+vector<double> linearVelocity;                  // Temporary Storage
+double altitude;                                // Temporary Storage
+double threshold = 0.1; // Threshold to determine deadreckoning methodology
 
 
-void dvlCallback(const slam::DVLConstPtr& msg) { //const uuv_sensor_ros_plugins_msgs::DVLConstPtr &msg --> issues with linking 
+/**
+ * DVL callback gets the latest DVL rosmsg information
+ * 
+ * @param pointer to the ros message
+ * @returns linear velocity of DVL, altitude of DVL, time of measurement
+ * @note issues with using the pointer "const uuv_sensor_ros_plugins_msgs::DVLConstPtr &msg" 
+ */
 
-    linearVelocity.clear();                             // Update linear velocity
+void dvlCallback(const slam::DVLConstPtr& msg) {
+
+    linearVelocity.clear();                         // Update linear velocity
     linearVelocity.push_back(msg->velocity.x);
     linearVelocity.push_back(msg->velocity.y);
     linearVelocity.push_back(msg->velocity.z); 
@@ -56,78 +53,108 @@ void dvlCallback(const slam::DVLConstPtr& msg) { //const uuv_sensor_ros_plugins_
     newTime = msgTime;                              // Update newtime
     deadReckon = 1;                                 // Toggle deadreckon node
 
-    // SANITY CHECK
-    auto strA = std::to_string(linearVelocity.at(0)); 
-    auto strB = std::to_string(linearVelocity.at(1)); 
-    auto strC = std::to_string(linearVelocity.at(2));
-    cout << "DVL CALLBACK| vx = " << strA << " , vy = " << strB << " , vz = " << strC << "\n";
+    //// auto strA = std::to_string(linearVelocity.at(0)); 
+    //// auto strB = std::to_string(linearVelocity.at(1)); 
+    //// auto strC = std::to_string(linearVelocity.at(2));
+    //// cout << "DVL CALLBACK| vx = " << strA << " , vy = " << strB << " , vz = " << strC << "\n";
 }
 
-void imuCallback(const sensor_msgs::ImuConstPtr& msg) { // Gets IMU data  
+/**
+ *  IMU callback gets the latest IMU rosmsg information
+ * 
+ *  @param pointer to the ros message
+ *  @returns orientation of the IMU & angular velocity of IMU
+ *  @note This IMU returns the orientation not the change in orientation like some available IMUs
+ */
+void imuCallback(const sensor_msgs::ImuConstPtr& msg) {
+
     orientation.setW(msg->orientation.w);
     orientation.setX(msg->orientation.x);
     orientation.setY(msg->orientation.y);
     orientation.setZ(msg->orientation.z);
 
+    angularVelocity.clear(); 
     angularVelocity.push_back(msg->angular_velocity.x);
     angularVelocity.push_back(msg->angular_velocity.y);
     angularVelocity.push_back(msg->angular_velocity.z);
 }
 
-void timerCallback(const ros::TimerEvent&){ // Timer available for future msg synchrosition 
+/**
+ *  Timer callback for future message synchronisation
+ *  @param pointer to the ros message
+ *  @note to be used for future rosmsg synchronisation
+ */
+
+void timerCallback(const ros::TimerEvent&){
 }
 
+/**
+ *  Dead reckoning function integrates IMU and DVL data for dead reckoning report
+ *  Dead reckoning report is published to /deadReckoning
+ *  @param linearVelocity from DVL
+ *  @param altitude from DVL
+ *  @param time0 from DVL. This is the time published with the previous DVL rosmsg
+ *  @param time1 from DVL. This is the time published with the new DVL rosmsg
+ *  @param orientation from IMU
+ *  @param angularVelocity from IMU
+ *  @returns deadReckoning rosmsg
+ *  @note the function is toggled on after every DVL rosmsg callback and is toggled off once the function is complete
+ *  @note Z-axis rotation (yaw) is used for position estimation. Yaw is historically more inaccurate than roll & pith which is why it is estimated using angularVelocity
+ *  @note displacement and rotation are in metres and radians
+ */
 slam::deadReckoning deadReckoning(vector<double> linearVelocity, double altitude, ros::Time time0, ros::Time time1, tf::Quaternion orientation, vector<double> angularVelocity){ // Provides x,y,z cartesian position and quaternion heading?? (Point and Rot)
 
     //---------------TIME DIFFERENCE BETWEEN PREVIOUS AND NEW POSE-------------------------------//
-    ros::Duration dt = time1-time0;         // USED TO CALCULATE DISTANCE TRAVELLED (X,Y,Z)
+    ros::Duration dt = time1-time0;                             // To calculate distance
     double dt_sec = dt.sec;     
 
     //-----------------------------------Orientation---------------------------------------------//
-    // Z-axis Rotation (Yaw) is used in Position Estimation (radians)
-
-    // Get previous RPY
-    tf::Quaternion prevOrientation = prevPose.getRotation();
+    tf::Quaternion prevOrientation = prevPose.getRotation();    // Get previous RPY
     tf::Matrix3x3 prevM(prevOrientation);
     double prevRoll, prevPitch, prevYaw;
-    prevM.getRPY(prevRoll, prevPitch, prevYaw); // Use prev Yaw (should be in radians)
+    prevM.getRPY(prevRoll, prevPitch, prevYaw);
 
-    // Get new RPY
-    tf::Matrix3x3 newM(orientation);
+    tf::Matrix3x3 newM(orientation);                            // Get new RPY
     double newRoll, newPitch, newYaw;
     newM.getRPY(newRoll, newPitch, newYaw);
-    newYaw = prevYaw + angularVelocity.at(2)*dt_sec; // Rotation estimation (equation from paper) // Historically Yaw is more inaccurate that roll & pitch
 
-    //-------------------------------Position Estimation-----------------------------------------//
-    // Velocity
-    double V = sqrt(pow(linearVelocity.at(0),2) + pow(linearVelocity.at(1),2));
+    newYaw = prevYaw + angularVelocity.at(2)*dt_sec;            // Estimate yaw rotation (Equation 12 from https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7913909/paper) 
+    //// auto strz = std::to_string(newYaw);
+    //// cout << "\n NEW YAW: " << strz << "\n\n";
 
-    // Previous Position
-    tf::Vector3 prevPosition = prevPose.getOrigin();
+    //-------------------------------POSITION ESTIMATION-----------------------------------------//
 
-    //-----------SANITY
-    auto strA = std::to_string(prevPosition.w());    
-    auto strB = std::to_string(prevPosition.getX());
-    auto strC = std::to_string(prevPosition.getY());
-    auto strD = std::to_string(prevPosition.getZ());
-    cout << "prevPose Origin [" << strA << "," << strB << "," << strC << "," << strD << "]\n";
+    double V = sqrt(pow(linearVelocity.at(0),2) + pow(linearVelocity.at(1),2));         // Get velocity (Equation 15 from https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7913909/) //! Omitted from Method 2
+    double vx = linearVelocity.at(0);                                                   // X component of linear velocity
+    double vy = linearVelocity.at(1);                                                   // Y component of linear velocity
 
-    // Estimating New Position (X,Y)
-    double px = prevPosition.getX() + V*sin(newYaw)*dt_sec;
-    double py = prevPosition.getY() + V*cos(newYaw)*dt_sec;
+    tf::Vector3 prevPosition = prevPose.getOrigin();                                    // Getting previous position
 
-    // --------------------------------SANITY CHECK----------------------------------------------//
+    //// auto strA = std::to_string(prevPosition.w());    
+    //// auto strB = std::to_string(prevPosition.getX());
+    //// auto strC = std::to_string(prevPosition.getY());
+    //// auto strD = std::to_string(prevPosition.getZ());
+    //// cout << "prevPose Origin [" << strA << "," << strB << "," << strC << "," << strD << " | New yaw: " << newYaw << "\n";
 
-    auto strX = std::to_string(px);
-    auto strPrevX = std::to_string(prevPosition.getX());
-    auto distXTravelled = std::to_string(px - prevPosition.getX());
+    double normYaw = fmod(newYaw + M_PI, 2 * M_PI);                                     // Normalise yaw
+    if (normYaw < 0){
+        normYaw += 2 * M_PI;
+    }
+    normYaw -= M_PI;
 
-    auto strY = std::to_string(py); 
-    auto strPrevY = std::to_string(prevPosition.getY());
-    auto distYTravelled = std::to_string(py - prevPosition.getY());
+    double px = prevPosition.getX() + vx*cos(normYaw)*dt_sec + vy*sin(normYaw)*dt_sec;  // MODEL 2 (Optimised)
+    double py = prevPosition.getY() + vx*sin(normYaw)*dt_sec + vy*cos(normYaw)*dt_sec;
 
-    cout << "X | New Position: " << strX << " | Prev Position: " << strPrevX << " | Distance Travelled: " << distXTravelled << "\n";
-    cout << "Y | New Position: " << strY << " | Prev Position: " << strPrevY << " | Distance Travelled: " << distYTravelled << "\n";
+    //// auto strX = std::to_string(px);
+    //// auto strPrevX = std::to_string(prevPosition.getX());
+    //// auto distXTravelled = std::to_string(px - prevPosition.getX());
+
+    //// auto strY = std::to_string(py); 
+    //// auto strPrevY = std::to_string(prevPosition.getY());
+    //// auto distYTravelled = std::to_string(py - prevPosition.getY());
+
+    //// cout << "X | New Position: " << strX << " | Prev Position: " << strPrevX << " | Distance Travelled: " << distXTravelled << "\n";
+    //// cout << "Y | New Position: " << strY << " | Prev Position: " << strPrevY << " | Distance Travelled: " << distYTravelled << "\n";
 
     // -----------------------------UPDATE PREVIOUS POSE-----------------------------------------//
     
@@ -140,25 +167,23 @@ slam::deadReckoning deadReckoning(vector<double> linearVelocity, double altitude
     newOrientation.setRPY(newRoll,newPitch,newYaw);
 
     newPose.setOrigin(newPosition);         // Set new pose
-    newPose.setRotation(newOrientation);
+    newPose.setRotation(newOrientation);    // newPose.setRotation(newOrientation);
 
     prevPose = newPose;
 
     //--------------------------CREATE DEAD RECKONING MESSAGE----------------------------------//
 
     slam::deadReckoning drMSG;
-
-    //! Check with ground truth!!
     drMSG.ts = time1;                       // (SEC)
     drMSG.x = px;                           // (METRES) 
     drMSG.y = py;                           // (METRES) 
     drMSG.z = altitude;                     // (METRES) 
-    drMSG.roll = newRoll;                   // (RADIANS)  //! Do we need to increment roll pitch yaw??
+    drMSG.roll = newRoll;                   // (RADIANS) RPY does not need to be incremented
     drMSG.pitch = newPitch;                 // (RADIANS) 
-    drMSG.yaw = newYaw;                     // (RADIANS) VALUE OPTIMISED (HISTORICALLY YAW IS INACCURATE FROM MEASUREMENT DEVICES)
+    drMSG.yaw = newYaw;                     // (RADIANS) OPTIMISED (historically yaw is inaccurate from measurement devices)
 
     //------------------------------TOGGLE DEAD RECKON-----------------------------------------//
-    deadReckon = 0;                         // Toggle deadreckon node TO WAIT FOR NEXT DVL MSG
+    deadReckon = 0;                         // Toggle deadreckon node to wait for next DVL message
 
     return drMSG;
 }
@@ -170,7 +195,7 @@ int main(int argc, char ** argv)
     ros::NodeHandle n;
 
     // Timer (5Hz) DVL frequency
-    ros::Timer timer = n.createTimer(ros::Duration(0.2), timerCallback); //5Hz in line with DVL frequency
+    ros::Timer timer = n.createTimer(ros::Duration(0.2), timerCallback); // 5Hz in line with DVL frequency //! Not used
 
     // Subscribers
     ros::Subscriber imu_sub_ = n.subscribe("/bluerov2/imu", 1, &imuCallback); // /slam/imu/data (REMAP!!)
